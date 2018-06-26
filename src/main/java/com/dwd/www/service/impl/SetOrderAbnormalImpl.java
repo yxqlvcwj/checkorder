@@ -30,14 +30,26 @@ public class SetOrderAbnormalImpl implements SetOrderAbnormal {
     public Response SetOrderAbnormalOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String url = "/" + serverSettings.riderVersion + "/rider/order-operation/set-order-abnormal.json";
         Map<String, Object> params = new HashMap<>();
+        if (checkDistance==true){
+            params.put("lng", "120166017");
+            params.put("lat", "30315555");
+            if ("".equals(distanceReason)){
+                params.put("considerDis", "1");
+                params.put("distanceReason", "");
+            }else {
+                params.put("considerDis", "0");
+                params.put("distanceReason", distanceReason);
+            }
+        }else{
+            params.put("lng", String.valueOf(order.getFromLng()));
+            params.put("lat", String.valueOf(order.getFromLat()));
+            params.put("considerDis", "0");
+            params.put("distanceReason", "");
+        }
         params.put("cityId", order.getCityId());
         params.put("riderId", riderDTO.getRiderId());
         params.put("orderId", order.getId());
-        params.put("lat", order.getFromLat());
-        params.put("lng", order.getFromLng());
-        params.put("considerDis", "0");
         params.put("abnormalReason", "53");
-        params.put("distanceReason", "");
         params.put("groupId",order.getGroupId());
         params.put("token", riderDTO.getToken());
         params.put("developerTest","1");

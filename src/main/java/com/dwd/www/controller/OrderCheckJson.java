@@ -108,15 +108,5 @@ public class OrderCheckJson {
         }
         jsonData = new JsonData(0,map,"");
         return jsonData;
-
     }
-
-
-
-    @Test
-    public void test(){
-        String riderIdCheck = "387" == "387"?"riderId对比通过":"riderId对比不通过，应当为："+387+",实际为"+387;
-        System.out.println(riderIdCheck);
-    }
-
 }

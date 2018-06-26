@@ -17,14 +17,12 @@ public interface WorkorderMapper {
     List<Workorder> getWorkorderByServiceIdAndItemCodeAndSourceId(@Param("order") Order order);
 
     //到店状态
-    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.arriveTm}")
+    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.dispatchTm}")
     List<Workorder> getWorkorderByServiceIdAndItemCodeAndSourceIdByArrive(@Param("order") Order order);
     //离店状态
-    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.leaveTm}")
+    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.dispatchTm}")
     List<Workorder> getWorkorderByServiceIdAndItemCodeAndSourceIdByObtain(@Param("order") Order order);
     //送达状态、异常完成、取消
-    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.finishTm}")
+    @Select("select * from workorder where service_id = #{order.id} and source_id = #{order.riderId} and create_time >= #{order.dispatchTm}")
     List<Workorder> getWorkorderByServiceIdAndItemCodeAndSourceIdByFinish(@Param("order") Order order);
-
-
 }

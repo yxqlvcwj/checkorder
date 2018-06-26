@@ -95,7 +95,9 @@ public class OrderOperationJson {
                     }
                     //获取订单状态为5时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderRobedCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){
+                        orderCheckModel = orderCheck.orderRobedCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
                 if ("10".equals(status)){
                     //抢单操作
@@ -117,7 +119,9 @@ public class OrderOperationJson {
                     }
                     //获取订单状态为10时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderArriveCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){
+                        orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
 
                 if ("15".equals(status)){
@@ -139,10 +143,20 @@ public class OrderOperationJson {
                         arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
                     }
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     //获取订单状态为15时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){
+                        orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
                 if ("100".equals(status)||"98".equals(status)){
                     //抢单操作
@@ -163,21 +177,49 @@ public class OrderOperationJson {
                         arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
                     }
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     sleep(70000);
                     if("100".equals(status)){
                         //送达操作
-                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为100时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
+                        if (checkOrder==true){ 
                         orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        }
                     }
                     if("98".equals(status)){
                         //设置异常单操作
-                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为98时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
-                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        if (checkOrder==true){
+                            orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        }
                     }
                 }
                 break;
@@ -195,7 +237,9 @@ public class OrderOperationJson {
                     }
                     //获取订单状态为10时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderArriveCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){
+                        orderCheckModel = orderCheck.orderArriveCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
                 if ("15".equals(status)){
                     //到店操作
@@ -209,10 +253,20 @@ public class OrderOperationJson {
                         arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
                     }
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     //获取订单状态为15时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){
+                        orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
                 if ("100".equals(status)||"98".equals(status)){
                     //到店操作
@@ -226,49 +280,115 @@ public class OrderOperationJson {
                         arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
                     }
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     sleep(65000);
                     if("100".equals(status)){
                         //送达操作
-                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为100时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
+                        if (checkOrder==true){ 
                         orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                     }
                     if("98".equals(status)){
                         //设置异常单操作
-                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为98时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
-                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        if (checkOrder==true){
+                            orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        }
                     }
                 }
                 break;
             case "10":
                 if ("15".equals(status)){
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     //获取订单状态为15时的关键字段校验结果
                     order = orderSearch.orderSearch(id);
-                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    if (checkOrder==true){ 
+                        orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                 }
                 if ("100".equals(status)||"98".equals(status)){
                     //离店操作
-                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
                     sleep(65000);
                     if("100".equals(status)){
                         //送达操作
-                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为100时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
+                        if (checkOrder==true){ 
                         orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                    }
                     if("98".equals(status)){
                         //设置异常单操作
-                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为98时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
-                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        if (checkOrder==true){
+                            orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        }
                     }
                 }
                 break;
@@ -277,17 +397,37 @@ public class OrderOperationJson {
                     sleep(65000);
                     if("100".equals(status)){
                         //送达操作
-                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为100时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
+                        if (checkOrder==true){ 
                         orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
                     }
                     if("98".equals(status)){
                         //设置异常单操作
-                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        if (checkDistance==true&&distanceReason!=null){
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
+                            if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                                setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                            }
+                        }else {
+                            setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
                         //获取订单状态为98时的关键字段校验结果
                         order = orderSearch.orderSearch(id);
-                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        if (checkOrder==true){
+                            orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                        }
                     }
                 }
         }
@@ -309,7 +449,7 @@ public class OrderOperationJson {
                 List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByObtain(order);
                 map.put("workorderList",workorderList);
             }
-            if ("100".equals(status)&&"98".equals(status)){
+            if ("100".equals(status)||"98".equals(status)){
                 sleep(3000);
                 List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByFinish(order);
                 map.put("workorderList",workorderList);

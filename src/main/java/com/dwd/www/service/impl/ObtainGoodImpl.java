@@ -29,14 +29,26 @@ public class ObtainGoodImpl implements ObtainGood {
     public Response ObtainGoodOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String url="/" +serverSettings.riderVersion +  "/rider/order-operation/obtain-good.json";
         Map<String,Object> param = new HashMap<>();
+        if (checkDistance==true){
+            param.put("lng", "120166017");
+            param.put("lat", "30315555");
+            if ("".equals(distanceReason)){
+                param.put("considerDis", "1");
+                param.put("distanceReason", "");
+            }else {
+                param.put("considerDis", "0");
+                param.put("distanceReason", distanceReason);
+            }
+        }else{
+            param.put("lng", String.valueOf(order.getFromLng()));
+            param.put("lat", String.valueOf(order.getFromLat()));
+            param.put("considerDis", "0");
+            param.put("distanceReason", "");
+        }
         param.put("cityId",order.getCityId());
         param.put("riderId",riderDTO.getRiderId());
         param.put("orderId",order.getId());
-        param.put("lat",order.getFromLat());
-        param.put("lng",order.getFromLng());
         param.put("shopId",order.getShopId());
-        param.put("considerDis","0");
-        param.put("distanceReason","");
         param.put("groupId",order.getGroupId());
         param.put("token",riderDTO.getToken());
         param.put("developerTest","1");
