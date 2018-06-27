@@ -72,6 +72,7 @@ public class OrderOperationJson {
         OrderCheckModel orderCheckModel = new OrderCheckModel();
         OrderFoulRecord orderFoulRecord = null;
         JsonData jsonData = null ;
+        distanceReason = distanceReason==null?"0":distanceReason;
         Order order = orderSearch.orderSearch(id);
         RiderDTO riderDTO = riderLogin.login(order,mobile);
         if (order!=null&&order.getRiderId()!=null){
@@ -109,7 +110,7 @@ public class OrderOperationJson {
                     }
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -134,7 +135,7 @@ public class OrderOperationJson {
                     }
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -144,7 +145,7 @@ public class OrderOperationJson {
                     }
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -168,7 +169,7 @@ public class OrderOperationJson {
                     }
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -178,7 +179,7 @@ public class OrderOperationJson {
                     }
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -190,7 +191,7 @@ public class OrderOperationJson {
                     if("100".equals(status)){
                         //送达操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
@@ -207,7 +208,7 @@ public class OrderOperationJson {
                     if("98".equals(status)){
                         //设置异常单操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
@@ -227,7 +228,7 @@ public class OrderOperationJson {
                 if ("10".equals(status)){
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -244,7 +245,7 @@ public class OrderOperationJson {
                 if ("15".equals(status)){
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -254,7 +255,7 @@ public class OrderOperationJson {
                     }
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -271,7 +272,7 @@ public class OrderOperationJson {
                 if ("100".equals(status)||"98".equals(status)){
                     //到店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
@@ -281,7 +282,7 @@ public class OrderOperationJson {
                     }
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -293,7 +294,7 @@ public class OrderOperationJson {
                     if("100".equals(status)){
                         //送达操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
@@ -310,7 +311,7 @@ public class OrderOperationJson {
                     if("98".equals(status)){
                         //设置异常单操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
@@ -330,7 +331,7 @@ public class OrderOperationJson {
                 if ("15".equals(status)){
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -347,7 +348,7 @@ public class OrderOperationJson {
                 if ("100".equals(status)||"98".equals(status)){
                     //离店操作
                     if (checkDistance==true&&distanceReason!=null){
-                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"");
+                        Response responseObtainGood =obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,"0");
                         jsonUtil.setJsonBody(jsonUtil.stringToJson(responseObtainGood.asString()));
                         if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                             obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
@@ -359,7 +360,7 @@ public class OrderOperationJson {
                     if("100".equals(status)){
                         //送达操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
@@ -376,7 +377,7 @@ public class OrderOperationJson {
                     if("98".equals(status)){
                         //设置异常单操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
@@ -398,7 +399,7 @@ public class OrderOperationJson {
                     if("100".equals(status)){
                         //送达操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"");
+                            Response responseFinishOrder =finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseFinishOrder.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);
@@ -415,7 +416,7 @@ public class OrderOperationJson {
                     if("98".equals(status)){
                         //设置异常单操作
                         if (checkDistance==true&&distanceReason!=null){
-                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"");
+                            Response responseSetOrderAbnormal =setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,"0");
                             jsonUtil.setJsonBody(jsonUtil.stringToJson(responseSetOrderAbnormal.asString()));
                             if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
                                 setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
