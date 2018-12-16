@@ -1,0 +1,1053 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
+<!--<mapper namespace="com.dwd.www.db.cobarc_shard3.mapper.WorkorderMapper" >-->
+  <!--<resultMap id="BaseResultMap" type="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--<id column="primarykey" property="primarykey" jdbcType="BIGINT" />-->
+    <!--<result column="id" property="id" jdbcType="VARCHAR" />-->
+    <!--<result column="city_id" property="cityId" jdbcType="INTEGER" />-->
+    <!--<result column="source" property="source" jdbcType="TINYINT" />-->
+    <!--<result column="source_id" property="sourceId" jdbcType="INTEGER" />-->
+    <!--<result column="source_mobile" property="sourceMobile" jdbcType="VARCHAR" />-->
+    <!--<result column="source_name" property="sourceName" jdbcType="VARCHAR" />-->
+    <!--<result column="classify" property="classify" jdbcType="INTEGER" />-->
+    <!--<result column="subclassify" property="subclassify" jdbcType="INTEGER" />-->
+    <!--<result column="item_code" property="itemCode" jdbcType="VARCHAR" />-->
+    <!--<result column="target" property="target" jdbcType="TINYINT" />-->
+    <!--<result column="target_id" property="targetId" jdbcType="INTEGER" />-->
+    <!--<result column="target_name" property="targetName" jdbcType="VARCHAR" />-->
+    <!--<result column="target_mobile" property="targetMobile" jdbcType="VARCHAR" />-->
+    <!--<result column="target_region_id" property="targetRegionId" jdbcType="INTEGER" />-->
+    <!--<result column="service_id" property="serviceId" jdbcType="VARCHAR" />-->
+    <!--<result column="channel_work_id" property="channelWorkId" jdbcType="VARCHAR" />-->
+    <!--<result column="receive_role" property="receiveRole" jdbcType="VARCHAR" />-->
+    <!--<result column="receiver" property="receiver" jdbcType="VARCHAR" />-->
+    <!--<result column="accepter" property="accepter" jdbcType="VARCHAR" />-->
+    <!--<result column="status" property="status" jdbcType="TINYINT" />-->
+    <!--<result column="priority" property="priority" jdbcType="TINYINT" />-->
+    <!--<result column="attachment" property="attachment" jdbcType="VARCHAR" />-->
+    <!--<result column="wdata" property="wdata" jdbcType="VARCHAR" />-->
+    <!--<result column="result" property="result" jdbcType="TINYINT" />-->
+    <!--<result column="result_content" property="resultContent" jdbcType="VARCHAR" />-->
+    <!--<result column="create_source" property="createSource" jdbcType="TINYINT" />-->
+    <!--<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="accept_time" property="acceptTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="require_time" property="requireTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="resolved_time" property="resolvedTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="action_type" property="actionType" jdbcType="TINYINT" />-->
+    <!--<result column="action_value" property="actionValue" jdbcType="DECIMAL" />-->
+    <!--<result column="action_result" property="actionResult" jdbcType="TINYINT" />-->
+    <!--<result column="action_time" property="actionTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="refund_account" property="refundAccount" jdbcType="VARCHAR" />-->
+    <!--<result column="refund_account_name" property="refundAccountName" jdbcType="VARCHAR" />-->
+    <!--<result column="platform_shop_id" property="platformShopId" jdbcType="INTEGER" />-->
+    <!--<result column="extra1" property="extra1" jdbcType="VARCHAR" />-->
+    <!--<result column="creator_no" property="creatorNo" jdbcType="VARCHAR" />-->
+    <!--<result column="creator_name" property="creatorName" jdbcType="VARCHAR" />-->
+    <!--<result column="urge_count" property="urgeCount" jdbcType="INTEGER" />-->
+    <!--<result column="relevance" property="relevance" jdbcType="VARCHAR" />-->
+    <!--<result column="can_appeal" property="canAppeal" jdbcType="TINYINT" />-->
+    <!--<result column="third_id" property="thirdId" jdbcType="VARCHAR" />-->
+    <!--<result column="relate_source" property="relateSource" jdbcType="TINYINT" />-->
+    <!--<result column="pending_visible" property="pendingVisible" jdbcType="TINYINT" />-->
+    <!--<result column="related_batch_no" property="relatedBatchNo" jdbcType="VARCHAR" />-->
+    <!--<result column="appraise" property="appraise" jdbcType="TINYINT" />-->
+  <!--</resultMap>-->
+  <!--<resultMap id="ResultMapWithBLOBs" type="com.dwd.www.db.cobarc_shard3.domain.Workorder" extends="BaseResultMap" >-->
+    <!--<result column="wdesc" property="wdesc" jdbcType="LONGVARCHAR" />-->
+  <!--</resultMap>-->
+  <!--<sql id="Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Update_By_Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="example.oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Base_Column_List" >-->
+    <!--primarykey, id, city_id, source, source_id, source_mobile, source_name, classify, -->
+    <!--subclassify, item_code, target, target_id, target_name, target_mobile, target_region_id, -->
+    <!--service_id, channel_work_id, receive_role, receiver, accepter, status, priority, -->
+    <!--attachment, wdata, result, result_content, create_source, create_time, accept_time, -->
+    <!--require_time, resolved_time, action_type, action_value, action_result, action_time, -->
+    <!--refund_account, refund_account_name, platform_shop_id, extra1, creator_no, creator_name, -->
+    <!--urge_count, relevance, can_appeal, third_id, relate_source, pending_visible, related_batch_no, -->
+    <!--appraise-->
+  <!--</sql>-->
+  <!--<sql id="Blob_Column_List" >-->
+    <!--wdesc-->
+  <!--</sql>-->
+  <!--<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dwd.www.db.cobarc_shard3.domain.WorkorderExample" >-->
+    <!--select-->
+    <!--<if OrderSearchController="distinct" >-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--,-->
+    <!--<include refid="Blob_Column_List" />-->
+    <!--from workorder-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if OrderSearchController="orderByClause != null" >-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dwd.www.db.cobarc_shard3.domain.WorkorderExample" >-->
+    <!--select-->
+    <!--<if OrderSearchController="distinct" >-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from workorder-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if OrderSearchController="orderByClause != null" >-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--,-->
+    <!--<include refid="Blob_Column_List" />-->
+    <!--from workorder-->
+    <!--where primarykey = #{primarykey,jdbcType=BIGINT}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from workorder-->
+    <!--where primarykey = #{primarykey,jdbcType=BIGINT}-->
+  <!--</delete>-->
+  <!--<delete id="deleteByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.WorkorderExample" >-->
+    <!--delete from workorder-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--insert into workorder (primarykey, id, city_id, -->
+      <!--source, source_id, source_mobile, -->
+      <!--source_name, classify, subclassify, -->
+      <!--item_code, target, target_id, -->
+      <!--target_name, target_mobile, target_region_id, -->
+      <!--service_id, channel_work_id, receive_role, -->
+      <!--receiver, accepter, status, -->
+      <!--priority, attachment, wdata, -->
+      <!--result, result_content, create_source, -->
+      <!--create_time, accept_time, require_time, -->
+      <!--resolved_time, action_type, action_value, -->
+      <!--action_result, action_time, refund_account, -->
+      <!--refund_account_name, platform_shop_id, extra1, -->
+      <!--creator_no, creator_name, urge_count, -->
+      <!--relevance, can_appeal, third_id, -->
+      <!--relate_source, pending_visible, related_batch_no, -->
+      <!--appraise, wdesc)-->
+    <!--values (#{primarykey,jdbcType=BIGINT}, #{id,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, -->
+      <!--#{source,jdbcType=TINYINT}, #{sourceId,jdbcType=INTEGER}, #{sourceMobile,jdbcType=VARCHAR}, -->
+      <!--#{sourceName,jdbcType=VARCHAR}, #{classify,jdbcType=INTEGER}, #{subclassify,jdbcType=INTEGER}, -->
+      <!--#{itemCode,jdbcType=VARCHAR}, #{target,jdbcType=TINYINT}, #{targetId,jdbcType=INTEGER}, -->
+      <!--#{targetName,jdbcType=VARCHAR}, #{targetMobile,jdbcType=VARCHAR}, #{targetRegionId,jdbcType=INTEGER}, -->
+      <!--#{serviceId,jdbcType=VARCHAR}, #{channelWorkId,jdbcType=VARCHAR}, #{receiveRole,jdbcType=VARCHAR}, -->
+      <!--#{receiver,jdbcType=VARCHAR}, #{accepter,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, -->
+      <!--#{priority,jdbcType=TINYINT}, #{attachment,jdbcType=VARCHAR}, #{wdata,jdbcType=VARCHAR}, -->
+      <!--#{result,jdbcType=TINYINT}, #{resultContent,jdbcType=VARCHAR}, #{createSource,jdbcType=TINYINT}, -->
+      <!--#{createTime,jdbcType=TIMESTAMP}, #{acceptTime,jdbcType=TIMESTAMP}, #{requireTime,jdbcType=TIMESTAMP}, -->
+      <!--#{resolvedTime,jdbcType=TIMESTAMP}, #{actionType,jdbcType=TINYINT}, #{actionValue,jdbcType=DECIMAL}, -->
+      <!--#{actionResult,jdbcType=TINYINT}, #{actionTime,jdbcType=TIMESTAMP}, #{refundAccount,jdbcType=VARCHAR}, -->
+      <!--#{refundAccountName,jdbcType=VARCHAR}, #{platformShopId,jdbcType=INTEGER}, #{extra1,jdbcType=VARCHAR}, -->
+      <!--#{creatorNo,jdbcType=VARCHAR}, #{creatorName,jdbcType=VARCHAR}, #{urgeCount,jdbcType=INTEGER}, -->
+      <!--#{relevance,jdbcType=VARCHAR}, #{canAppeal,jdbcType=TINYINT}, #{thirdId,jdbcType=VARCHAR}, -->
+      <!--#{relateSource,jdbcType=TINYINT}, #{pendingVisible,jdbcType=TINYINT}, #{relatedBatchNo,jdbcType=VARCHAR}, -->
+      <!--#{appraise,jdbcType=TINYINT}, #{wdesc,jdbcType=LONGVARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--insert into workorder-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="primarykey != null" >-->
+        <!--primarykey,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="source != null" >-->
+        <!--source,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceId != null" >-->
+        <!--source_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceMobile != null" >-->
+        <!--source_mobile,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceName != null" >-->
+        <!--source_name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="classify != null" >-->
+        <!--classify,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="subclassify != null" >-->
+        <!--subclassify,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="itemCode != null" >-->
+        <!--item_code,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="target != null" >-->
+        <!--target,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetId != null" >-->
+        <!--target_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetName != null" >-->
+        <!--target_name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetMobile != null" >-->
+        <!--target_mobile,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetRegionId != null" >-->
+        <!--target_region_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="serviceId != null" >-->
+        <!--service_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="channelWorkId != null" >-->
+        <!--channel_work_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiveRole != null" >-->
+        <!--receive_role,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiver != null" >-->
+        <!--receiver,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="accepter != null" >-->
+        <!--accepter,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="status != null" >-->
+        <!--status,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="priority != null" >-->
+        <!--priority,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="attachment != null" >-->
+        <!--attachment,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdata != null" >-->
+        <!--wdata,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="result != null" >-->
+        <!--result,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resultContent != null" >-->
+        <!--result_content,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createSource != null" >-->
+        <!--create_source,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createTime != null" >-->
+        <!--create_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="acceptTime != null" >-->
+        <!--accept_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="requireTime != null" >-->
+        <!--require_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resolvedTime != null" >-->
+        <!--resolved_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionType != null" >-->
+        <!--action_type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionValue != null" >-->
+        <!--action_value,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionResult != null" >-->
+        <!--action_result,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionTime != null" >-->
+        <!--action_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccount != null" >-->
+        <!--refund_account,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccountName != null" >-->
+        <!--refund_account_name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="platformShopId != null" >-->
+        <!--platform_shop_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="extra1 != null" >-->
+        <!--extra1,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorNo != null" >-->
+        <!--creator_no,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorName != null" >-->
+        <!--creator_name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="urgeCount != null" >-->
+        <!--urge_count,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relevance != null" >-->
+        <!--relevance,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="canAppeal != null" >-->
+        <!--can_appeal,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="thirdId != null" >-->
+        <!--third_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relateSource != null" >-->
+        <!--relate_source,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="pendingVisible != null" >-->
+        <!--pending_visible,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relatedBatchNo != null" >-->
+        <!--related_batch_no,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="appraise != null" >-->
+        <!--appraise,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdesc != null" >-->
+        <!--wdesc,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="primarykey != null" >-->
+        <!--#{primarykey,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--#{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="source != null" >-->
+        <!--#{source,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceId != null" >-->
+        <!--#{sourceId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceMobile != null" >-->
+        <!--#{sourceMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceName != null" >-->
+        <!--#{sourceName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="classify != null" >-->
+        <!--#{classify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="subclassify != null" >-->
+        <!--#{subclassify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="itemCode != null" >-->
+        <!--#{itemCode,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="target != null" >-->
+        <!--#{target,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetId != null" >-->
+        <!--#{targetId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetName != null" >-->
+        <!--#{targetName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetMobile != null" >-->
+        <!--#{targetMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetRegionId != null" >-->
+        <!--#{targetRegionId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="serviceId != null" >-->
+        <!--#{serviceId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="channelWorkId != null" >-->
+        <!--#{channelWorkId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiveRole != null" >-->
+        <!--#{receiveRole,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiver != null" >-->
+        <!--#{receiver,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="accepter != null" >-->
+        <!--#{accepter,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="status != null" >-->
+        <!--#{status,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="priority != null" >-->
+        <!--#{priority,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="attachment != null" >-->
+        <!--#{attachment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdata != null" >-->
+        <!--#{wdata,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="result != null" >-->
+        <!--#{result,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resultContent != null" >-->
+        <!--#{resultContent,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createSource != null" >-->
+        <!--#{createSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createTime != null" >-->
+        <!--#{createTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="acceptTime != null" >-->
+        <!--#{acceptTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="requireTime != null" >-->
+        <!--#{requireTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resolvedTime != null" >-->
+        <!--#{resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionType != null" >-->
+        <!--#{actionType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionValue != null" >-->
+        <!--#{actionValue,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionResult != null" >-->
+        <!--#{actionResult,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionTime != null" >-->
+        <!--#{actionTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccount != null" >-->
+        <!--#{refundAccount,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccountName != null" >-->
+        <!--#{refundAccountName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="platformShopId != null" >-->
+        <!--#{platformShopId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="extra1 != null" >-->
+        <!--#{extra1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorNo != null" >-->
+        <!--#{creatorNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorName != null" >-->
+        <!--#{creatorName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="urgeCount != null" >-->
+        <!--#{urgeCount,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relevance != null" >-->
+        <!--#{relevance,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="canAppeal != null" >-->
+        <!--#{canAppeal,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="thirdId != null" >-->
+        <!--#{thirdId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relateSource != null" >-->
+        <!--#{relateSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="pendingVisible != null" >-->
+        <!--#{pendingVisible,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relatedBatchNo != null" >-->
+        <!--#{relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="appraise != null" >-->
+        <!--#{appraise,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdesc != null" >-->
+        <!--#{wdesc,jdbcType=LONGVARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<select id="countByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.WorkorderExample" resultType="java.lang.Integer" >-->
+    <!--select count(*) from workorder-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<update id="updateByExampleSelective" parameterType="map" >-->
+    <!--update workorder-->
+    <!--<set >-->
+      <!--<if OrderSearchController="record.primarykey != null" >-->
+        <!--primarykey = #{record.primarykey,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.id != null" >-->
+        <!--id = #{record.id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.cityId != null" >-->
+        <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.source != null" >-->
+        <!--source = #{record.source,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.sourceId != null" >-->
+        <!--source_id = #{record.sourceId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.sourceMobile != null" >-->
+        <!--source_mobile = #{record.sourceMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.sourceName != null" >-->
+        <!--source_name = #{record.sourceName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.classify != null" >-->
+        <!--classify = #{record.classify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.subclassify != null" >-->
+        <!--subclassify = #{record.subclassify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.itemCode != null" >-->
+        <!--item_code = #{record.itemCode,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.target != null" >-->
+        <!--target = #{record.target,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.targetId != null" >-->
+        <!--target_id = #{record.targetId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.targetName != null" >-->
+        <!--target_name = #{record.targetName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.targetMobile != null" >-->
+        <!--target_mobile = #{record.targetMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.targetRegionId != null" >-->
+        <!--target_region_id = #{record.targetRegionId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.serviceId != null" >-->
+        <!--service_id = #{record.serviceId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.channelWorkId != null" >-->
+        <!--channel_work_id = #{record.channelWorkId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.receiveRole != null" >-->
+        <!--receive_role = #{record.receiveRole,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.receiver != null" >-->
+        <!--receiver = #{record.receiver,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.accepter != null" >-->
+        <!--accepter = #{record.accepter,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.status != null" >-->
+        <!--status = #{record.status,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.priority != null" >-->
+        <!--priority = #{record.priority,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.attachment != null" >-->
+        <!--attachment = #{record.attachment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.wdata != null" >-->
+        <!--wdata = #{record.wdata,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.result != null" >-->
+        <!--result = #{record.result,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.resultContent != null" >-->
+        <!--result_content = #{record.resultContent,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.createSource != null" >-->
+        <!--create_source = #{record.createSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.createTime != null" >-->
+        <!--create_time = #{record.createTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.acceptTime != null" >-->
+        <!--accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.requireTime != null" >-->
+        <!--require_time = #{record.requireTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.resolvedTime != null" >-->
+        <!--resolved_time = #{record.resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.actionType != null" >-->
+        <!--action_type = #{record.actionType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.actionValue != null" >-->
+        <!--action_value = #{record.actionValue,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.actionResult != null" >-->
+        <!--action_result = #{record.actionResult,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.actionTime != null" >-->
+        <!--action_time = #{record.actionTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.refundAccount != null" >-->
+        <!--refund_account = #{record.refundAccount,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.refundAccountName != null" >-->
+        <!--refund_account_name = #{record.refundAccountName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.platformShopId != null" >-->
+        <!--platform_shop_id = #{record.platformShopId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.extra1 != null" >-->
+        <!--extra1 = #{record.extra1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.creatorNo != null" >-->
+        <!--creator_no = #{record.creatorNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.creatorName != null" >-->
+        <!--creator_name = #{record.creatorName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.urgeCount != null" >-->
+        <!--urge_count = #{record.urgeCount,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.relevance != null" >-->
+        <!--relevance = #{record.relevance,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.canAppeal != null" >-->
+        <!--can_appeal = #{record.canAppeal,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.thirdId != null" >-->
+        <!--third_id = #{record.thirdId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.relateSource != null" >-->
+        <!--relate_source = #{record.relateSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.pendingVisible != null" >-->
+        <!--pending_visible = #{record.pendingVisible,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.relatedBatchNo != null" >-->
+        <!--related_batch_no = #{record.relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.appraise != null" >-->
+        <!--appraise = #{record.appraise,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.wdesc != null" >-->
+        <!--wdesc = #{record.wdesc,jdbcType=LONGVARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByExampleWithBLOBs" parameterType="map" >-->
+    <!--update workorder-->
+    <!--set primarykey = #{record.primarykey,jdbcType=BIGINT},-->
+      <!--id = #{record.id,jdbcType=VARCHAR},-->
+      <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--source = #{record.source,jdbcType=TINYINT},-->
+      <!--source_id = #{record.sourceId,jdbcType=INTEGER},-->
+      <!--source_mobile = #{record.sourceMobile,jdbcType=VARCHAR},-->
+      <!--source_name = #{record.sourceName,jdbcType=VARCHAR},-->
+      <!--classify = #{record.classify,jdbcType=INTEGER},-->
+      <!--subclassify = #{record.subclassify,jdbcType=INTEGER},-->
+      <!--item_code = #{record.itemCode,jdbcType=VARCHAR},-->
+      <!--target = #{record.target,jdbcType=TINYINT},-->
+      <!--target_id = #{record.targetId,jdbcType=INTEGER},-->
+      <!--target_name = #{record.targetName,jdbcType=VARCHAR},-->
+      <!--target_mobile = #{record.targetMobile,jdbcType=VARCHAR},-->
+      <!--target_region_id = #{record.targetRegionId,jdbcType=INTEGER},-->
+      <!--service_id = #{record.serviceId,jdbcType=VARCHAR},-->
+      <!--channel_work_id = #{record.channelWorkId,jdbcType=VARCHAR},-->
+      <!--receive_role = #{record.receiveRole,jdbcType=VARCHAR},-->
+      <!--receiver = #{record.receiver,jdbcType=VARCHAR},-->
+      <!--accepter = #{record.accepter,jdbcType=VARCHAR},-->
+      <!--status = #{record.status,jdbcType=TINYINT},-->
+      <!--priority = #{record.priority,jdbcType=TINYINT},-->
+      <!--attachment = #{record.attachment,jdbcType=VARCHAR},-->
+      <!--wdata = #{record.wdata,jdbcType=VARCHAR},-->
+      <!--result = #{record.result,jdbcType=TINYINT},-->
+      <!--result_content = #{record.resultContent,jdbcType=VARCHAR},-->
+      <!--create_source = #{record.createSource,jdbcType=TINYINT},-->
+      <!--create_time = #{record.createTime,jdbcType=TIMESTAMP},-->
+      <!--accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},-->
+      <!--require_time = #{record.requireTime,jdbcType=TIMESTAMP},-->
+      <!--resolved_time = #{record.resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--action_type = #{record.actionType,jdbcType=TINYINT},-->
+      <!--action_value = #{record.actionValue,jdbcType=DECIMAL},-->
+      <!--action_result = #{record.actionResult,jdbcType=TINYINT},-->
+      <!--action_time = #{record.actionTime,jdbcType=TIMESTAMP},-->
+      <!--refund_account = #{record.refundAccount,jdbcType=VARCHAR},-->
+      <!--refund_account_name = #{record.refundAccountName,jdbcType=VARCHAR},-->
+      <!--platform_shop_id = #{record.platformShopId,jdbcType=INTEGER},-->
+      <!--extra1 = #{record.extra1,jdbcType=VARCHAR},-->
+      <!--creator_no = #{record.creatorNo,jdbcType=VARCHAR},-->
+      <!--creator_name = #{record.creatorName,jdbcType=VARCHAR},-->
+      <!--urge_count = #{record.urgeCount,jdbcType=INTEGER},-->
+      <!--relevance = #{record.relevance,jdbcType=VARCHAR},-->
+      <!--can_appeal = #{record.canAppeal,jdbcType=TINYINT},-->
+      <!--third_id = #{record.thirdId,jdbcType=VARCHAR},-->
+      <!--relate_source = #{record.relateSource,jdbcType=TINYINT},-->
+      <!--pending_visible = #{record.pendingVisible,jdbcType=TINYINT},-->
+      <!--related_batch_no = #{record.relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--appraise = #{record.appraise,jdbcType=TINYINT},-->
+      <!--wdesc = #{record.wdesc,jdbcType=LONGVARCHAR}-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByExample" parameterType="map" >-->
+    <!--update workorder-->
+    <!--set primarykey = #{record.primarykey,jdbcType=BIGINT},-->
+      <!--id = #{record.id,jdbcType=VARCHAR},-->
+      <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--source = #{record.source,jdbcType=TINYINT},-->
+      <!--source_id = #{record.sourceId,jdbcType=INTEGER},-->
+      <!--source_mobile = #{record.sourceMobile,jdbcType=VARCHAR},-->
+      <!--source_name = #{record.sourceName,jdbcType=VARCHAR},-->
+      <!--classify = #{record.classify,jdbcType=INTEGER},-->
+      <!--subclassify = #{record.subclassify,jdbcType=INTEGER},-->
+      <!--item_code = #{record.itemCode,jdbcType=VARCHAR},-->
+      <!--target = #{record.target,jdbcType=TINYINT},-->
+      <!--target_id = #{record.targetId,jdbcType=INTEGER},-->
+      <!--target_name = #{record.targetName,jdbcType=VARCHAR},-->
+      <!--target_mobile = #{record.targetMobile,jdbcType=VARCHAR},-->
+      <!--target_region_id = #{record.targetRegionId,jdbcType=INTEGER},-->
+      <!--service_id = #{record.serviceId,jdbcType=VARCHAR},-->
+      <!--channel_work_id = #{record.channelWorkId,jdbcType=VARCHAR},-->
+      <!--receive_role = #{record.receiveRole,jdbcType=VARCHAR},-->
+      <!--receiver = #{record.receiver,jdbcType=VARCHAR},-->
+      <!--accepter = #{record.accepter,jdbcType=VARCHAR},-->
+      <!--status = #{record.status,jdbcType=TINYINT},-->
+      <!--priority = #{record.priority,jdbcType=TINYINT},-->
+      <!--attachment = #{record.attachment,jdbcType=VARCHAR},-->
+      <!--wdata = #{record.wdata,jdbcType=VARCHAR},-->
+      <!--result = #{record.result,jdbcType=TINYINT},-->
+      <!--result_content = #{record.resultContent,jdbcType=VARCHAR},-->
+      <!--create_source = #{record.createSource,jdbcType=TINYINT},-->
+      <!--create_time = #{record.createTime,jdbcType=TIMESTAMP},-->
+      <!--accept_time = #{record.acceptTime,jdbcType=TIMESTAMP},-->
+      <!--require_time = #{record.requireTime,jdbcType=TIMESTAMP},-->
+      <!--resolved_time = #{record.resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--action_type = #{record.actionType,jdbcType=TINYINT},-->
+      <!--action_value = #{record.actionValue,jdbcType=DECIMAL},-->
+      <!--action_result = #{record.actionResult,jdbcType=TINYINT},-->
+      <!--action_time = #{record.actionTime,jdbcType=TIMESTAMP},-->
+      <!--refund_account = #{record.refundAccount,jdbcType=VARCHAR},-->
+      <!--refund_account_name = #{record.refundAccountName,jdbcType=VARCHAR},-->
+      <!--platform_shop_id = #{record.platformShopId,jdbcType=INTEGER},-->
+      <!--extra1 = #{record.extra1,jdbcType=VARCHAR},-->
+      <!--creator_no = #{record.creatorNo,jdbcType=VARCHAR},-->
+      <!--creator_name = #{record.creatorName,jdbcType=VARCHAR},-->
+      <!--urge_count = #{record.urgeCount,jdbcType=INTEGER},-->
+      <!--relevance = #{record.relevance,jdbcType=VARCHAR},-->
+      <!--can_appeal = #{record.canAppeal,jdbcType=TINYINT},-->
+      <!--third_id = #{record.thirdId,jdbcType=VARCHAR},-->
+      <!--relate_source = #{record.relateSource,jdbcType=TINYINT},-->
+      <!--pending_visible = #{record.pendingVisible,jdbcType=TINYINT},-->
+      <!--related_batch_no = #{record.relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--appraise = #{record.appraise,jdbcType=TINYINT}-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--update workorder-->
+    <!--<set >-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--id = #{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="source != null" >-->
+        <!--source = #{source,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceId != null" >-->
+        <!--source_id = #{sourceId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceMobile != null" >-->
+        <!--source_mobile = #{sourceMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="sourceName != null" >-->
+        <!--source_name = #{sourceName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="classify != null" >-->
+        <!--classify = #{classify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="subclassify != null" >-->
+        <!--subclassify = #{subclassify,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="itemCode != null" >-->
+        <!--item_code = #{itemCode,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="target != null" >-->
+        <!--target = #{target,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetId != null" >-->
+        <!--target_id = #{targetId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetName != null" >-->
+        <!--target_name = #{targetName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetMobile != null" >-->
+        <!--target_mobile = #{targetMobile,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="targetRegionId != null" >-->
+        <!--target_region_id = #{targetRegionId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="serviceId != null" >-->
+        <!--service_id = #{serviceId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="channelWorkId != null" >-->
+        <!--channel_work_id = #{channelWorkId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiveRole != null" >-->
+        <!--receive_role = #{receiveRole,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="receiver != null" >-->
+        <!--receiver = #{receiver,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="accepter != null" >-->
+        <!--accepter = #{accepter,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="status != null" >-->
+        <!--status = #{status,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="priority != null" >-->
+        <!--priority = #{priority,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="attachment != null" >-->
+        <!--attachment = #{attachment,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdata != null" >-->
+        <!--wdata = #{wdata,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="result != null" >-->
+        <!--result = #{result,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resultContent != null" >-->
+        <!--result_content = #{resultContent,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createSource != null" >-->
+        <!--create_source = #{createSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="createTime != null" >-->
+        <!--create_time = #{createTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="acceptTime != null" >-->
+        <!--accept_time = #{acceptTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="requireTime != null" >-->
+        <!--require_time = #{requireTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="resolvedTime != null" >-->
+        <!--resolved_time = #{resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionType != null" >-->
+        <!--action_type = #{actionType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionValue != null" >-->
+        <!--action_value = #{actionValue,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionResult != null" >-->
+        <!--action_result = #{actionResult,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="actionTime != null" >-->
+        <!--action_time = #{actionTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccount != null" >-->
+        <!--refund_account = #{refundAccount,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="refundAccountName != null" >-->
+        <!--refund_account_name = #{refundAccountName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="platformShopId != null" >-->
+        <!--platform_shop_id = #{platformShopId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="extra1 != null" >-->
+        <!--extra1 = #{extra1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorNo != null" >-->
+        <!--creator_no = #{creatorNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="creatorName != null" >-->
+        <!--creator_name = #{creatorName,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="urgeCount != null" >-->
+        <!--urge_count = #{urgeCount,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relevance != null" >-->
+        <!--relevance = #{relevance,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="canAppeal != null" >-->
+        <!--can_appeal = #{canAppeal,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="thirdId != null" >-->
+        <!--third_id = #{thirdId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relateSource != null" >-->
+        <!--relate_source = #{relateSource,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="pendingVisible != null" >-->
+        <!--pending_visible = #{pendingVisible,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="relatedBatchNo != null" >-->
+        <!--related_batch_no = #{relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="appraise != null" >-->
+        <!--appraise = #{appraise,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="wdesc != null" >-->
+        <!--wdesc = #{wdesc,jdbcType=LONGVARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where primarykey = #{primarykey,jdbcType=BIGINT}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--update workorder-->
+    <!--set id = #{id,jdbcType=VARCHAR},-->
+      <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--source = #{source,jdbcType=TINYINT},-->
+      <!--source_id = #{sourceId,jdbcType=INTEGER},-->
+      <!--source_mobile = #{sourceMobile,jdbcType=VARCHAR},-->
+      <!--source_name = #{sourceName,jdbcType=VARCHAR},-->
+      <!--classify = #{classify,jdbcType=INTEGER},-->
+      <!--subclassify = #{subclassify,jdbcType=INTEGER},-->
+      <!--item_code = #{itemCode,jdbcType=VARCHAR},-->
+      <!--target = #{target,jdbcType=TINYINT},-->
+      <!--target_id = #{targetId,jdbcType=INTEGER},-->
+      <!--target_name = #{targetName,jdbcType=VARCHAR},-->
+      <!--target_mobile = #{targetMobile,jdbcType=VARCHAR},-->
+      <!--target_region_id = #{targetRegionId,jdbcType=INTEGER},-->
+      <!--service_id = #{serviceId,jdbcType=VARCHAR},-->
+      <!--channel_work_id = #{channelWorkId,jdbcType=VARCHAR},-->
+      <!--receive_role = #{receiveRole,jdbcType=VARCHAR},-->
+      <!--receiver = #{receiver,jdbcType=VARCHAR},-->
+      <!--accepter = #{accepter,jdbcType=VARCHAR},-->
+      <!--status = #{status,jdbcType=TINYINT},-->
+      <!--priority = #{priority,jdbcType=TINYINT},-->
+      <!--attachment = #{attachment,jdbcType=VARCHAR},-->
+      <!--wdata = #{wdata,jdbcType=VARCHAR},-->
+      <!--result = #{result,jdbcType=TINYINT},-->
+      <!--result_content = #{resultContent,jdbcType=VARCHAR},-->
+      <!--create_source = #{createSource,jdbcType=TINYINT},-->
+      <!--create_time = #{createTime,jdbcType=TIMESTAMP},-->
+      <!--accept_time = #{acceptTime,jdbcType=TIMESTAMP},-->
+      <!--require_time = #{requireTime,jdbcType=TIMESTAMP},-->
+      <!--resolved_time = #{resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--action_type = #{actionType,jdbcType=TINYINT},-->
+      <!--action_value = #{actionValue,jdbcType=DECIMAL},-->
+      <!--action_result = #{actionResult,jdbcType=TINYINT},-->
+      <!--action_time = #{actionTime,jdbcType=TIMESTAMP},-->
+      <!--refund_account = #{refundAccount,jdbcType=VARCHAR},-->
+      <!--refund_account_name = #{refundAccountName,jdbcType=VARCHAR},-->
+      <!--platform_shop_id = #{platformShopId,jdbcType=INTEGER},-->
+      <!--extra1 = #{extra1,jdbcType=VARCHAR},-->
+      <!--creator_no = #{creatorNo,jdbcType=VARCHAR},-->
+      <!--creator_name = #{creatorName,jdbcType=VARCHAR},-->
+      <!--urge_count = #{urgeCount,jdbcType=INTEGER},-->
+      <!--relevance = #{relevance,jdbcType=VARCHAR},-->
+      <!--can_appeal = #{canAppeal,jdbcType=TINYINT},-->
+      <!--third_id = #{thirdId,jdbcType=VARCHAR},-->
+      <!--relate_source = #{relateSource,jdbcType=TINYINT},-->
+      <!--pending_visible = #{pendingVisible,jdbcType=TINYINT},-->
+      <!--related_batch_no = #{relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--appraise = #{appraise,jdbcType=TINYINT},-->
+      <!--wdesc = #{wdesc,jdbcType=LONGVARCHAR}-->
+    <!--where primarykey = #{primarykey,jdbcType=BIGINT}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.dwd.www.db.cobarc_shard3.domain.Workorder" >-->
+    <!--update workorder-->
+    <!--set id = #{id,jdbcType=VARCHAR},-->
+      <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--source = #{source,jdbcType=TINYINT},-->
+      <!--source_id = #{sourceId,jdbcType=INTEGER},-->
+      <!--source_mobile = #{sourceMobile,jdbcType=VARCHAR},-->
+      <!--source_name = #{sourceName,jdbcType=VARCHAR},-->
+      <!--classify = #{classify,jdbcType=INTEGER},-->
+      <!--subclassify = #{subclassify,jdbcType=INTEGER},-->
+      <!--item_code = #{itemCode,jdbcType=VARCHAR},-->
+      <!--target = #{target,jdbcType=TINYINT},-->
+      <!--target_id = #{targetId,jdbcType=INTEGER},-->
+      <!--target_name = #{targetName,jdbcType=VARCHAR},-->
+      <!--target_mobile = #{targetMobile,jdbcType=VARCHAR},-->
+      <!--target_region_id = #{targetRegionId,jdbcType=INTEGER},-->
+      <!--service_id = #{serviceId,jdbcType=VARCHAR},-->
+      <!--channel_work_id = #{channelWorkId,jdbcType=VARCHAR},-->
+      <!--receive_role = #{receiveRole,jdbcType=VARCHAR},-->
+      <!--receiver = #{receiver,jdbcType=VARCHAR},-->
+      <!--accepter = #{accepter,jdbcType=VARCHAR},-->
+      <!--status = #{status,jdbcType=TINYINT},-->
+      <!--priority = #{priority,jdbcType=TINYINT},-->
+      <!--attachment = #{attachment,jdbcType=VARCHAR},-->
+      <!--wdata = #{wdata,jdbcType=VARCHAR},-->
+      <!--result = #{result,jdbcType=TINYINT},-->
+      <!--result_content = #{resultContent,jdbcType=VARCHAR},-->
+      <!--create_source = #{createSource,jdbcType=TINYINT},-->
+      <!--create_time = #{createTime,jdbcType=TIMESTAMP},-->
+      <!--accept_time = #{acceptTime,jdbcType=TIMESTAMP},-->
+      <!--require_time = #{requireTime,jdbcType=TIMESTAMP},-->
+      <!--resolved_time = #{resolvedTime,jdbcType=TIMESTAMP},-->
+      <!--action_type = #{actionType,jdbcType=TINYINT},-->
+      <!--action_value = #{actionValue,jdbcType=DECIMAL},-->
+      <!--action_result = #{actionResult,jdbcType=TINYINT},-->
+      <!--action_time = #{actionTime,jdbcType=TIMESTAMP},-->
+      <!--refund_account = #{refundAccount,jdbcType=VARCHAR},-->
+      <!--refund_account_name = #{refundAccountName,jdbcType=VARCHAR},-->
+      <!--platform_shop_id = #{platformShopId,jdbcType=INTEGER},-->
+      <!--extra1 = #{extra1,jdbcType=VARCHAR},-->
+      <!--creator_no = #{creatorNo,jdbcType=VARCHAR},-->
+      <!--creator_name = #{creatorName,jdbcType=VARCHAR},-->
+      <!--urge_count = #{urgeCount,jdbcType=INTEGER},-->
+      <!--relevance = #{relevance,jdbcType=VARCHAR},-->
+      <!--can_appeal = #{canAppeal,jdbcType=TINYINT},-->
+      <!--third_id = #{thirdId,jdbcType=VARCHAR},-->
+      <!--relate_source = #{relateSource,jdbcType=TINYINT},-->
+      <!--pending_visible = #{pendingVisible,jdbcType=TINYINT},-->
+      <!--related_batch_no = #{relatedBatchNo,jdbcType=VARCHAR},-->
+      <!--appraise = #{appraise,jdbcType=TINYINT}-->
+    <!--where primarykey = #{primarykey,jdbcType=BIGINT}-->
+  <!--</update>-->
+<!--</mapper>-->

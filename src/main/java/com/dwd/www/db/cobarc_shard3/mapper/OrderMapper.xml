@@ -1,0 +1,76 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
+<!--<mapper namespace="com.dwd.www.db.cobarc_shard3.mapper.OrderMapper" >-->
+  <!--<resultMap id="BaseResultMap" type="com.dwd.www.db.cobarc_shard3.domain.Order" >-->
+    <!--<id column="id" property="id" jdbcType="BIGINT" />-->
+    <!--<result column="city_id" property="cityId" jdbcType="INTEGER" />-->
+    <!--<result column="code" property="code" jdbcType="VARCHAR" />-->
+    <!--<result column="shop_id" property="shopId" jdbcType="INTEGER" />-->
+    <!--<result column="shop_title" property="shopTitle" jdbcType="VARCHAR" />-->
+    <!--<result column="platform_shopid" property="platformShopid" jdbcType="INTEGER" />-->
+    <!--<result column="rider_id" property="riderId" jdbcType="INTEGER" />-->
+    <!--<result column="status" property="status" jdbcType="TINYINT" />-->
+    <!--<result column="from_addr" property="fromAddr" jdbcType="VARCHAR" />-->
+    <!--<result column="from_lng" property="fromLng" jdbcType="INTEGER" />-->
+    <!--<result column="from_lat" property="fromLat" jdbcType="INTEGER" />-->
+    <!--<result column="from_tel" property="fromTel" jdbcType="VARCHAR" />-->
+    <!--<result column="to_addr" property="toAddr" jdbcType="VARCHAR" />-->
+    <!--<result column="to_lng" property="toLng" jdbcType="INTEGER" />-->
+    <!--<result column="to_lat" property="toLat" jdbcType="INTEGER" />-->
+    <!--<result column="to_tel" property="toTel" jdbcType="VARCHAR" />-->
+    <!--<result column="to_name" property="toName" jdbcType="VARCHAR" />-->
+    <!--<result column="distance" property="distance" jdbcType="INTEGER" />-->
+    <!--<result column="place_tm" property="placeTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="record_tm" property="recordTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="dispatch_tm" property="dispatchTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="arrive_tm" property="arriveTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="accept_tm" property="acceptTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="leave_tm" property="leaveTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="finish_tm" property="finishTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="require_tm" property="requireTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="arriveable_tm" property="arriveableTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="leaveable_tm" property="leaveableTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="dispatchable_tm" property="dispatchableTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="take_dur" property="takeDur" jdbcType="INTEGER" />-->
+    <!--<result column="why" property="why" jdbcType="VARCHAR" />-->
+    <!--<result column="paid" property="paid" jdbcType="TINYINT" />-->
+    <!--<result column="require_rider_type" property="requireRiderType" jdbcType="TINYINT" />-->
+    <!--<result column="real_rider_type" property="realRiderType" jdbcType="TINYINT" />-->
+    <!--<result column="pay_way" property="payWay" jdbcType="TINYINT" />-->
+    <!--<result column="cancel_reason" property="cancelReason" jdbcType="INTEGER" />-->
+    <!--<result column="source" property="source" jdbcType="TINYINT" />-->
+    <!--<result column="channel_id" property="channelId" jdbcType="VARCHAR" />-->
+    <!--<result column="serial_id" property="serialId" jdbcType="VARCHAR" />-->
+    <!--<result column="trade_id" property="tradeId" jdbcType="VARCHAR" />-->
+    <!--<result column="trading_area_id" property="tradingAreaId" jdbcType="INTEGER" />-->
+    <!--<result column="shop_region_id" property="shopRegionId" jdbcType="INTEGER" />-->
+    <!--<result column="rider_region_id" property="riderRegionId" jdbcType="INTEGER" />-->
+    <!--<result column="order_type" property="orderType" jdbcType="TINYINT" />-->
+    <!--<result column="remarks" property="remarks" jdbcType="VARCHAR" />-->
+    <!--<result column="switch_times" property="switchTimes" jdbcType="TINYINT" />-->
+    <!--<result column="over_time" property="overTime" jdbcType="TINYINT" />-->
+    <!--<result column="modified" property="modified" jdbcType="TINYINT" />-->
+    <!--<result column="dispatch_mode" property="dispatchMode" jdbcType="TINYINT" />-->
+    <!--<result column="feature" property="feature" jdbcType="VARCHAR" />-->
+    <!--<result column="shardx" property="shardx" jdbcType="INTEGER" />-->
+    <!--<result column="shardy" property="shardy" jdbcType="INTEGER" />-->
+    <!--<result column="shardz" property="shardz" jdbcType="INTEGER" />-->
+    <!--<result column="group_id" property="groupId" jdbcType="INTEGER" />-->
+    <!--<result column="contract_type" property="contractType" jdbcType="TINYINT" />-->
+    <!--<result column="goods_type" property="goodsType" jdbcType="VARCHAR" />-->
+    <!--<result column="weight" property="weight" jdbcType="INTEGER" />-->
+    <!--<result column="require_tag" property="requireTag" jdbcType="VARCHAR" />-->
+    <!--<result column="require_level" property="requireLevel" jdbcType="VARCHAR" />-->
+    <!--<result column="outter_group" property="outterGroup" jdbcType="VARCHAR" />-->
+    <!--<result column="recruit_task_id" property="recruitTaskId" jdbcType="INTEGER" />-->
+    <!--<result column="waybill_no" property="waybillNo" jdbcType="VARCHAR" />-->
+    <!--<result column="waybill_no_suffix" property="waybillNoSuffix" jdbcType="CHAR" />-->
+    <!--<result column="platform_region_id" property="platformRegionId" jdbcType="INTEGER" />-->
+    <!--<result column="company_id" property="companyId" jdbcType="BIGINT" />-->
+    <!--<result column="standard" property="standard" jdbcType="INTEGER" />-->
+  <!--</resultMap>-->
+    <!--<select id="findOrderByOrderId" parameterType="java.lang.String" resultType="java.lang.String">-->
+          <!--select waybill_no,waybill_no_suffix from  `order` where id= #{id};-->
+    <!--</select>-->
+
+<!--</mapper>-->

@@ -1,0 +1,590 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
+<!--<mapper namespace="com.dwd.www.db.cobarc_shard3.mapper.BalanceLogMapper" >-->
+  <!--<resultMap id="BaseResultMap" type="com.dwd.www.db.cobarc_shard3.domain.BalanceLog" >-->
+    <!--<id column="id" property="id" jdbcType="BIGINT" />-->
+    <!--<result column="city_id" property="cityId" jdbcType="INTEGER" />-->
+    <!--<result column="rider_id" property="riderId" jdbcType="INTEGER" />-->
+    <!--<result column="type" property="type" jdbcType="TINYINT" />-->
+    <!--<result column="blocked" property="blocked" jdbcType="TINYINT" />-->
+    <!--<result column="account" property="account" jdbcType="VARCHAR" />-->
+    <!--<result column="paid" property="paid" jdbcType="TINYINT" />-->
+    <!--<result column="name" property="name" jdbcType="VARCHAR" />-->
+    <!--<result column="cost" property="cost" jdbcType="DECIMAL" />-->
+    <!--<result column="factorage" property="factorage" jdbcType="DECIMAL" />-->
+    <!--<result column="ins_tm" property="insTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="verify_tm" property="verifyTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="finish_tm" property="finishTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="reason" property="reason" jdbcType="VARCHAR" />-->
+    <!--<result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />-->
+    <!--<result column="trade_way" property="tradeWay" jdbcType="TINYINT" />-->
+    <!--<result column="risk_checked" property="riskChecked" jdbcType="TINYINT" />-->
+    <!--<result column="current_service_type" property="currentServiceType" jdbcType="TINYINT" />-->
+    <!--<result column="bank_name" property="bankName" jdbcType="TINYINT" />-->
+    <!--<result column="bank_card" property="bankCard" jdbcType="VARCHAR" />-->
+    <!--<result column="bank_card_type" property="bankCardType" jdbcType="TINYINT" />-->
+    <!--<result column="pay_type" property="payType" jdbcType="TINYINT" />-->
+    <!--<result column="batch_record_id" property="batchRecordId" jdbcType="BIGINT" />-->
+    <!--<result column="batch_no" property="batchNo" jdbcType="VARCHAR" />-->
+    <!--<result column="shardx" property="shardx" jdbcType="INTEGER" />-->
+    <!--<result column="withdraw_tm" property="withdrawTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />-->
+    <!--<result column="effective_balance" property="effectiveBalance" jdbcType="DECIMAL" />-->
+    <!--<result column="auditing_money" property="auditingMoney" jdbcType="DECIMAL" />-->
+  <!--</resultMap>-->
+  <!--<sql id="Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Update_By_Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="example.oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Base_Column_List" >-->
+    <!--id, city_id, rider_id, type, blocked, account, paid, name, cost, factorage, ins_tm, -->
+    <!--verify_tm, finish_tm, reason, trade_no, trade_way, risk_checked, current_service_type, -->
+    <!--bank_name, bank_card, bank_card_type, pay_type, batch_record_id, batch_no, shardx, -->
+    <!--withdraw_tm, modify_time, effective_balance, auditing_money-->
+  <!--</sql>-->
+  <!--<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLogExample" >-->
+    <!--select-->
+    <!--<if OrderSearchController="distinct" >-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from balance_log-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if OrderSearchController="orderByClause != null" >-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from balance_log-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from balance_log-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</delete>-->
+  <!--<delete id="deleteByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLogExample" >-->
+    <!--delete from balance_log-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLog" >-->
+    <!--insert into balance_log (id, city_id, rider_id, -->
+      <!--type, blocked, account, -->
+      <!--paid, name, cost, factorage, -->
+      <!--ins_tm, verify_tm, finish_tm, -->
+      <!--reason, trade_no, trade_way, -->
+      <!--risk_checked, current_service_type, bank_name, -->
+      <!--bank_card, bank_card_type, pay_type, -->
+      <!--batch_record_id, batch_no, shardx, -->
+      <!--withdraw_tm, modify_time, effective_balance, -->
+      <!--auditing_money)-->
+    <!--values (#{id,jdbcType=BIGINT}, #{cityId,jdbcType=INTEGER}, #{riderId,jdbcType=INTEGER}, -->
+      <!--#{type,jdbcType=TINYINT}, #{blocked,jdbcType=TINYINT}, #{account,jdbcType=VARCHAR}, -->
+      <!--#{paid,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{cost,jdbcType=DECIMAL}, #{factorage,jdbcType=DECIMAL}, -->
+      <!--#{insTm,jdbcType=TIMESTAMP}, #{verifyTm,jdbcType=TIMESTAMP}, #{finishTm,jdbcType=TIMESTAMP}, -->
+      <!--#{reason,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, #{tradeWay,jdbcType=TINYINT}, -->
+      <!--#{riskChecked,jdbcType=TINYINT}, #{currentServiceType,jdbcType=TINYINT}, #{bankName,jdbcType=TINYINT}, -->
+      <!--#{bankCard,jdbcType=VARCHAR}, #{bankCardType,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT}, -->
+      <!--#{batchRecordId,jdbcType=BIGINT}, #{batchNo,jdbcType=VARCHAR}, #{shardx,jdbcType=INTEGER}, -->
+      <!--#{withdrawTm,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{effectiveBalance,jdbcType=DECIMAL}, -->
+      <!--#{auditingMoney,jdbcType=DECIMAL})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLog" >-->
+    <!--insert into balance_log-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--rider_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="type != null" >-->
+        <!--type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="blocked != null" >-->
+        <!--blocked,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="account != null" >-->
+        <!--account,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="paid != null" >-->
+        <!--paid,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="name != null" >-->
+        <!--name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cost != null" >-->
+        <!--cost,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="factorage != null" >-->
+        <!--factorage,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--ins_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="verifyTm != null" >-->
+        <!--verify_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="finishTm != null" >-->
+        <!--finish_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="reason != null" >-->
+        <!--reason,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeNo != null" >-->
+        <!--trade_no,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeWay != null" >-->
+        <!--trade_way,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riskChecked != null" >-->
+        <!--risk_checked,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="currentServiceType != null" >-->
+        <!--current_service_type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankName != null" >-->
+        <!--bank_name,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCard != null" >-->
+        <!--bank_card,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCardType != null" >-->
+        <!--bank_card_type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="payType != null" >-->
+        <!--pay_type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchRecordId != null" >-->
+        <!--batch_record_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchNo != null" >-->
+        <!--batch_no,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--shardx,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="withdrawTm != null" >-->
+        <!--withdraw_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="modifyTime != null" >-->
+        <!--modify_time,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="effectiveBalance != null" >-->
+        <!--effective_balance,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="auditingMoney != null" >-->
+        <!--auditing_money,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--#{id,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--#{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--#{riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="type != null" >-->
+        <!--#{type,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="blocked != null" >-->
+        <!--#{blocked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="account != null" >-->
+        <!--#{account,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="paid != null" >-->
+        <!--#{paid,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="name != null" >-->
+        <!--#{name,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cost != null" >-->
+        <!--#{cost,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="factorage != null" >-->
+        <!--#{factorage,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--#{insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="verifyTm != null" >-->
+        <!--#{verifyTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="finishTm != null" >-->
+        <!--#{finishTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="reason != null" >-->
+        <!--#{reason,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeNo != null" >-->
+        <!--#{tradeNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeWay != null" >-->
+        <!--#{tradeWay,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riskChecked != null" >-->
+        <!--#{riskChecked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="currentServiceType != null" >-->
+        <!--#{currentServiceType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankName != null" >-->
+        <!--#{bankName,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCard != null" >-->
+        <!--#{bankCard,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCardType != null" >-->
+        <!--#{bankCardType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="payType != null" >-->
+        <!--#{payType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchRecordId != null" >-->
+        <!--#{batchRecordId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchNo != null" >-->
+        <!--#{batchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--#{shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="withdrawTm != null" >-->
+        <!--#{withdrawTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="modifyTime != null" >-->
+        <!--#{modifyTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="effectiveBalance != null" >-->
+        <!--#{effectiveBalance,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="auditingMoney != null" >-->
+        <!--#{auditingMoney,jdbcType=DECIMAL},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<select id="countByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLogExample" resultType="java.lang.Integer" >-->
+    <!--select count(*) from balance_log-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<update id="updateByExampleSelective" parameterType="map" >-->
+    <!--update balance_log-->
+    <!--<set >-->
+      <!--<if OrderSearchController="record.id != null" >-->
+        <!--id = #{record.id,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.cityId != null" >-->
+        <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.riderId != null" >-->
+        <!--rider_id = #{record.riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.type != null" >-->
+        <!--type = #{record.type,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.blocked != null" >-->
+        <!--blocked = #{record.blocked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.account != null" >-->
+        <!--account = #{record.account,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.paid != null" >-->
+        <!--paid = #{record.paid,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.name != null" >-->
+        <!--name = #{record.name,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.cost != null" >-->
+        <!--cost = #{record.cost,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.factorage != null" >-->
+        <!--factorage = #{record.factorage,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.insTm != null" >-->
+        <!--ins_tm = #{record.insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.verifyTm != null" >-->
+        <!--verify_tm = #{record.verifyTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.finishTm != null" >-->
+        <!--finish_tm = #{record.finishTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.reason != null" >-->
+        <!--reason = #{record.reason,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.tradeNo != null" >-->
+        <!--trade_no = #{record.tradeNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.tradeWay != null" >-->
+        <!--trade_way = #{record.tradeWay,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.riskChecked != null" >-->
+        <!--risk_checked = #{record.riskChecked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.currentServiceType != null" >-->
+        <!--current_service_type = #{record.currentServiceType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.bankName != null" >-->
+        <!--bank_name = #{record.bankName,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.bankCard != null" >-->
+        <!--bank_card = #{record.bankCard,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.bankCardType != null" >-->
+        <!--bank_card_type = #{record.bankCardType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.payType != null" >-->
+        <!--pay_type = #{record.payType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.batchRecordId != null" >-->
+        <!--batch_record_id = #{record.batchRecordId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.batchNo != null" >-->
+        <!--batch_no = #{record.batchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.shardx != null" >-->
+        <!--shardx = #{record.shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.withdrawTm != null" >-->
+        <!--withdraw_tm = #{record.withdrawTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.modifyTime != null" >-->
+        <!--modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.effectiveBalance != null" >-->
+        <!--effective_balance = #{record.effectiveBalance,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.auditingMoney != null" >-->
+        <!--auditing_money = #{record.auditingMoney,jdbcType=DECIMAL},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByExample" parameterType="map" >-->
+    <!--update balance_log-->
+    <!--set id = #{record.id,jdbcType=BIGINT},-->
+      <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--rider_id = #{record.riderId,jdbcType=INTEGER},-->
+      <!--type = #{record.type,jdbcType=TINYINT},-->
+      <!--blocked = #{record.blocked,jdbcType=TINYINT},-->
+      <!--account = #{record.account,jdbcType=VARCHAR},-->
+      <!--paid = #{record.paid,jdbcType=TINYINT},-->
+      <!--name = #{record.name,jdbcType=VARCHAR},-->
+      <!--cost = #{record.cost,jdbcType=DECIMAL},-->
+      <!--factorage = #{record.factorage,jdbcType=DECIMAL},-->
+      <!--ins_tm = #{record.insTm,jdbcType=TIMESTAMP},-->
+      <!--verify_tm = #{record.verifyTm,jdbcType=TIMESTAMP},-->
+      <!--finish_tm = #{record.finishTm,jdbcType=TIMESTAMP},-->
+      <!--reason = #{record.reason,jdbcType=VARCHAR},-->
+      <!--trade_no = #{record.tradeNo,jdbcType=VARCHAR},-->
+      <!--trade_way = #{record.tradeWay,jdbcType=TINYINT},-->
+      <!--risk_checked = #{record.riskChecked,jdbcType=TINYINT},-->
+      <!--current_service_type = #{record.currentServiceType,jdbcType=TINYINT},-->
+      <!--bank_name = #{record.bankName,jdbcType=TINYINT},-->
+      <!--bank_card = #{record.bankCard,jdbcType=VARCHAR},-->
+      <!--bank_card_type = #{record.bankCardType,jdbcType=TINYINT},-->
+      <!--pay_type = #{record.payType,jdbcType=TINYINT},-->
+      <!--batch_record_id = #{record.batchRecordId,jdbcType=BIGINT},-->
+      <!--batch_no = #{record.batchNo,jdbcType=VARCHAR},-->
+      <!--shardx = #{record.shardx,jdbcType=INTEGER},-->
+      <!--withdraw_tm = #{record.withdrawTm,jdbcType=TIMESTAMP},-->
+      <!--modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},-->
+      <!--effective_balance = #{record.effectiveBalance,jdbcType=DECIMAL},-->
+      <!--auditing_money = #{record.auditingMoney,jdbcType=DECIMAL}-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLog" >-->
+    <!--update balance_log-->
+    <!--<set >-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--rider_id = #{riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="type != null" >-->
+        <!--type = #{type,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="blocked != null" >-->
+        <!--blocked = #{blocked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="account != null" >-->
+        <!--account = #{account,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="paid != null" >-->
+        <!--paid = #{paid,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="name != null" >-->
+        <!--name = #{name,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cost != null" >-->
+        <!--cost = #{cost,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="factorage != null" >-->
+        <!--factorage = #{factorage,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--ins_tm = #{insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="verifyTm != null" >-->
+        <!--verify_tm = #{verifyTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="finishTm != null" >-->
+        <!--finish_tm = #{finishTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="reason != null" >-->
+        <!--reason = #{reason,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeNo != null" >-->
+        <!--trade_no = #{tradeNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="tradeWay != null" >-->
+        <!--trade_way = #{tradeWay,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riskChecked != null" >-->
+        <!--risk_checked = #{riskChecked,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="currentServiceType != null" >-->
+        <!--current_service_type = #{currentServiceType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankName != null" >-->
+        <!--bank_name = #{bankName,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCard != null" >-->
+        <!--bank_card = #{bankCard,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="bankCardType != null" >-->
+        <!--bank_card_type = #{bankCardType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="payType != null" >-->
+        <!--pay_type = #{payType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchRecordId != null" >-->
+        <!--batch_record_id = #{batchRecordId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="batchNo != null" >-->
+        <!--batch_no = #{batchNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--shardx = #{shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="withdrawTm != null" >-->
+        <!--withdraw_tm = #{withdrawTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="modifyTime != null" >-->
+        <!--modify_time = #{modifyTime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="effectiveBalance != null" >-->
+        <!--effective_balance = #{effectiveBalance,jdbcType=DECIMAL},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="auditingMoney != null" >-->
+        <!--auditing_money = #{auditingMoney,jdbcType=DECIMAL},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.dwd.www.db.cobarc_shard3.domain.BalanceLog" >-->
+    <!--update balance_log-->
+    <!--set city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--rider_id = #{riderId,jdbcType=INTEGER},-->
+      <!--type = #{type,jdbcType=TINYINT},-->
+      <!--blocked = #{blocked,jdbcType=TINYINT},-->
+      <!--account = #{account,jdbcType=VARCHAR},-->
+      <!--paid = #{paid,jdbcType=TINYINT},-->
+      <!--name = #{name,jdbcType=VARCHAR},-->
+      <!--cost = #{cost,jdbcType=DECIMAL},-->
+      <!--factorage = #{factorage,jdbcType=DECIMAL},-->
+      <!--ins_tm = #{insTm,jdbcType=TIMESTAMP},-->
+      <!--verify_tm = #{verifyTm,jdbcType=TIMESTAMP},-->
+      <!--finish_tm = #{finishTm,jdbcType=TIMESTAMP},-->
+      <!--reason = #{reason,jdbcType=VARCHAR},-->
+      <!--trade_no = #{tradeNo,jdbcType=VARCHAR},-->
+      <!--trade_way = #{tradeWay,jdbcType=TINYINT},-->
+      <!--risk_checked = #{riskChecked,jdbcType=TINYINT},-->
+      <!--current_service_type = #{currentServiceType,jdbcType=TINYINT},-->
+      <!--bank_name = #{bankName,jdbcType=TINYINT},-->
+      <!--bank_card = #{bankCard,jdbcType=VARCHAR},-->
+      <!--bank_card_type = #{bankCardType,jdbcType=TINYINT},-->
+      <!--pay_type = #{payType,jdbcType=TINYINT},-->
+      <!--batch_record_id = #{batchRecordId,jdbcType=BIGINT},-->
+      <!--batch_no = #{batchNo,jdbcType=VARCHAR},-->
+      <!--shardx = #{shardx,jdbcType=INTEGER},-->
+      <!--withdraw_tm = #{withdrawTm,jdbcType=TIMESTAMP},-->
+      <!--modify_time = #{modifyTime,jdbcType=TIMESTAMP},-->
+      <!--effective_balance = #{effectiveBalance,jdbcType=DECIMAL},-->
+      <!--auditing_money = #{auditingMoney,jdbcType=DECIMAL}-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+<!--</mapper>-->

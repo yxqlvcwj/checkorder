@@ -1,0 +1,370 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
+<!--<mapper namespace="com.dwd.www.db.cobarc_shard3.mapper.OrderFoulRecordMapper" >-->
+  <!--<resultMap id="BaseResultMap" type="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord" >-->
+    <!--<id column="id" property="id" jdbcType="BIGINT" />-->
+    <!--<result column="rider_id" property="riderId" jdbcType="INTEGER" />-->
+    <!--<result column="city_id" property="cityId" jdbcType="INTEGER" />-->
+    <!--<result column="order_id" property="orderId" jdbcType="BIGINT" />-->
+    <!--<result column="order_phase" property="orderPhase" jdbcType="TINYINT" />-->
+    <!--<result column="foul_reason" property="foulReason" jdbcType="TINYINT" />-->
+    <!--<result column="remark" property="remark" jdbcType="VARCHAR" />-->
+    <!--<result column="rider_lng" property="riderLng" jdbcType="INTEGER" />-->
+    <!--<result column="rider_lat" property="riderLat" jdbcType="INTEGER" />-->
+    <!--<result column="deal_type" property="dealType" jdbcType="TINYINT" />-->
+    <!--<result column="ins_tm" property="insTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="upd_tm" property="updTm" jdbcType="TIMESTAMP" />-->
+    <!--<result column="shardx" property="shardx" jdbcType="INTEGER" />-->
+    <!--<result column="shardy" property="shardy" jdbcType="INTEGER" />-->
+    <!--<result column="shardz" property="shardz" jdbcType="INTEGER" />-->
+  <!--</resultMap>-->
+  <!--<sql id="Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Update_By_Example_Where_Clause" >-->
+    <!--<where >-->
+      <!--<foreach collection="example.oredCriteria" item="criteria" separator="or" >-->
+        <!--<if OrderSearchController="criteria.valid" >-->
+          <!--<trim prefix="(" suffix=")" prefixOverrides="and" >-->
+            <!--<foreach collection="criteria.criteria" item="criterion" >-->
+              <!--<choose >-->
+                <!--<when OrderSearchController="criterion.noValue" >-->
+                  <!--and ${criterion.condition}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.singleValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.betweenValue" >-->
+                  <!--and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}-->
+                <!--</when>-->
+                <!--<when OrderSearchController="criterion.listValue" >-->
+                  <!--and ${criterion.condition}-->
+                  <!--<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >-->
+                    <!--#{listItem}-->
+                  <!--</foreach>-->
+                <!--</when>-->
+              <!--</choose>-->
+            <!--</foreach>-->
+          <!--</trim>-->
+        <!--</if>-->
+      <!--</foreach>-->
+    <!--</where>-->
+  <!--</sql>-->
+  <!--<sql id="Base_Column_List" >-->
+    <!--id, rider_id, city_id, order_id, order_phase, foul_reason, remark, rider_lng, rider_lat, -->
+    <!--deal_type, ins_tm, upd_tm, shardx, shardy, shardz-->
+  <!--</sql>-->
+  <!--<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecordExample" >-->
+    <!--select-->
+    <!--<if OrderSearchController="distinct" >-->
+      <!--distinct-->
+    <!--</if>-->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from order_foul_record-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+    <!--<if OrderSearchController="orderByClause != null" >-->
+      <!--order by ${orderByClause}-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from order_foul_record-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from order_foul_record-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</delete>-->
+  <!--<delete id="deleteByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecordExample" >-->
+    <!--delete from order_foul_record-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord" >-->
+    <!--insert into order_foul_record (id, rider_id, city_id, -->
+      <!--order_id, order_phase, foul_reason, -->
+      <!--remark, rider_lng, rider_lat, -->
+      <!--deal_type, ins_tm, upd_tm, -->
+      <!--shardx, shardy, shardz-->
+      <!--)-->
+    <!--values (#{id,jdbcType=BIGINT}, #{riderId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, -->
+      <!--#{orderId,jdbcType=BIGINT}, #{orderPhase,jdbcType=TINYINT}, #{foulReason,jdbcType=TINYINT}, -->
+      <!--#{remark,jdbcType=VARCHAR}, #{riderLng,jdbcType=INTEGER}, #{riderLat,jdbcType=INTEGER}, -->
+      <!--#{dealType,jdbcType=TINYINT}, #{insTm,jdbcType=TIMESTAMP}, #{updTm,jdbcType=TIMESTAMP}, -->
+      <!--#{shardx,jdbcType=INTEGER}, #{shardy,jdbcType=INTEGER}, #{shardz,jdbcType=INTEGER}-->
+      <!--)-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord" >-->
+    <!--insert into order_foul_record-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--rider_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderId != null" >-->
+        <!--order_id,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderPhase != null" >-->
+        <!--order_phase,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="foulReason != null" >-->
+        <!--foul_reason,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="remark != null" >-->
+        <!--remark,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLng != null" >-->
+        <!--rider_lng,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLat != null" >-->
+        <!--rider_lat,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="dealType != null" >-->
+        <!--deal_type,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--ins_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="updTm != null" >-->
+        <!--upd_tm,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--shardx,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardy != null" >-->
+        <!--shardy,-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardz != null" >-->
+        <!--shardz,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if OrderSearchController="id != null" >-->
+        <!--#{id,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--#{riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--#{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderId != null" >-->
+        <!--#{orderId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderPhase != null" >-->
+        <!--#{orderPhase,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="foulReason != null" >-->
+        <!--#{foulReason,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="remark != null" >-->
+        <!--#{remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLng != null" >-->
+        <!--#{riderLng,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLat != null" >-->
+        <!--#{riderLat,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="dealType != null" >-->
+        <!--#{dealType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--#{insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="updTm != null" >-->
+        <!--#{updTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--#{shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardy != null" >-->
+        <!--#{shardy,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardz != null" >-->
+        <!--#{shardz,jdbcType=INTEGER},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<select id="countByExample" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecordExample" resultType="java.lang.Integer" >-->
+    <!--select count(*) from order_foul_record-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</select>-->
+  <!--<update id="updateByExampleSelective" parameterType="map" >-->
+    <!--update order_foul_record-->
+    <!--<set >-->
+      <!--<if OrderSearchController="record.id != null" >-->
+        <!--id = #{record.id,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.riderId != null" >-->
+        <!--rider_id = #{record.riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.cityId != null" >-->
+        <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.orderId != null" >-->
+        <!--order_id = #{record.orderId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.orderPhase != null" >-->
+        <!--order_phase = #{record.orderPhase,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.foulReason != null" >-->
+        <!--foul_reason = #{record.foulReason,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.remark != null" >-->
+        <!--remark = #{record.remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.riderLng != null" >-->
+        <!--rider_lng = #{record.riderLng,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.riderLat != null" >-->
+        <!--rider_lat = #{record.riderLat,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.dealType != null" >-->
+        <!--deal_type = #{record.dealType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.insTm != null" >-->
+        <!--ins_tm = #{record.insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.updTm != null" >-->
+        <!--upd_tm = #{record.updTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.shardx != null" >-->
+        <!--shardx = #{record.shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.shardy != null" >-->
+        <!--shardy = #{record.shardy,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="record.shardz != null" >-->
+        <!--shardz = #{record.shardz,jdbcType=INTEGER},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByExample" parameterType="map" >-->
+    <!--update order_foul_record-->
+    <!--set id = #{record.id,jdbcType=BIGINT},-->
+      <!--rider_id = #{record.riderId,jdbcType=INTEGER},-->
+      <!--city_id = #{record.cityId,jdbcType=INTEGER},-->
+      <!--order_id = #{record.orderId,jdbcType=BIGINT},-->
+      <!--order_phase = #{record.orderPhase,jdbcType=TINYINT},-->
+      <!--foul_reason = #{record.foulReason,jdbcType=TINYINT},-->
+      <!--remark = #{record.remark,jdbcType=VARCHAR},-->
+      <!--rider_lng = #{record.riderLng,jdbcType=INTEGER},-->
+      <!--rider_lat = #{record.riderLat,jdbcType=INTEGER},-->
+      <!--deal_type = #{record.dealType,jdbcType=TINYINT},-->
+      <!--ins_tm = #{record.insTm,jdbcType=TIMESTAMP},-->
+      <!--upd_tm = #{record.updTm,jdbcType=TIMESTAMP},-->
+      <!--shardx = #{record.shardx,jdbcType=INTEGER},-->
+      <!--shardy = #{record.shardy,jdbcType=INTEGER},-->
+      <!--shardz = #{record.shardz,jdbcType=INTEGER}-->
+    <!--<if OrderSearchController="_parameter != null" >-->
+      <!--<include refid="Update_By_Example_Where_Clause" />-->
+    <!--</if>-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord" >-->
+    <!--update order_foul_record-->
+    <!--<set >-->
+      <!--<if OrderSearchController="riderId != null" >-->
+        <!--rider_id = #{riderId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="cityId != null" >-->
+        <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderId != null" >-->
+        <!--order_id = #{orderId,jdbcType=BIGINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="orderPhase != null" >-->
+        <!--order_phase = #{orderPhase,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="foulReason != null" >-->
+        <!--foul_reason = #{foulReason,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="remark != null" >-->
+        <!--remark = #{remark,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLng != null" >-->
+        <!--rider_lng = #{riderLng,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="riderLat != null" >-->
+        <!--rider_lat = #{riderLat,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="dealType != null" >-->
+        <!--deal_type = #{dealType,jdbcType=TINYINT},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="insTm != null" >-->
+        <!--ins_tm = #{insTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="updTm != null" >-->
+        <!--upd_tm = #{updTm,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardx != null" >-->
+        <!--shardx = #{shardx,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardy != null" >-->
+        <!--shardy = #{shardy,jdbcType=INTEGER},-->
+      <!--</if>-->
+      <!--<if OrderSearchController="shardz != null" >-->
+        <!--shardz = #{shardz,jdbcType=INTEGER},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord" >-->
+    <!--update order_foul_record-->
+    <!--set rider_id = #{riderId,jdbcType=INTEGER},-->
+      <!--city_id = #{cityId,jdbcType=INTEGER},-->
+      <!--order_id = #{orderId,jdbcType=BIGINT},-->
+      <!--order_phase = #{orderPhase,jdbcType=TINYINT},-->
+      <!--foul_reason = #{foulReason,jdbcType=TINYINT},-->
+      <!--remark = #{remark,jdbcType=VARCHAR},-->
+      <!--rider_lng = #{riderLng,jdbcType=INTEGER},-->
+      <!--rider_lat = #{riderLat,jdbcType=INTEGER},-->
+      <!--deal_type = #{dealType,jdbcType=TINYINT},-->
+      <!--ins_tm = #{insTm,jdbcType=TIMESTAMP},-->
+      <!--upd_tm = #{updTm,jdbcType=TIMESTAMP},-->
+      <!--shardx = #{shardx,jdbcType=INTEGER},-->
+      <!--shardy = #{shardy,jdbcType=INTEGER},-->
+      <!--shardz = #{shardz,jdbcType=INTEGER}-->
+    <!--where id = #{id,jdbcType=BIGINT}-->
+  <!--</update>-->
+<!--</mapper>-->
