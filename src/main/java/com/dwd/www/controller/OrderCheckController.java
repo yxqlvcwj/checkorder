@@ -3,6 +3,8 @@ package com.dwd.www.controller;
 import com.dwd.www.check.OrderCheck;
 import com.dwd.www.db.cobarc_shard3.domain.Order;
 import com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord;
+import com.dwd.www.db.workorderdb.domain.Workorder;
+import com.dwd.www.db.workorderdb.mapper.WorkorderMapper;
 import com.dwd.www.model.OrderCheckModel;
 import com.dwd.www.service.OrderFoulRecordSearch;
 import com.dwd.www.service.OrderSearch;
@@ -35,6 +37,9 @@ public class OrderCheckController {
 
     @Autowired
     private OrderFoulRecordSearch orderFoulRecordSearch;
+
+    @Autowired
+    private WorkorderMapper workorderMapper;
 
     private OrderCheck orderCheck = new OrderCheck();
     @GetMapping("/order/check")
@@ -74,14 +79,29 @@ public class OrderCheckController {
         if ("99".equals(status)){
             orderCheckModel = orderCheck.orderCanceledCheck(riderId,id,order,orderCheckModel);
         }
-        orderList.add(orderCheckModel);
-        map.put("orderCheck",orderList);
         if (checkDistance==true) {
             orderFoulRecord = orderFoulRecordSearch.getOrderFoulRecordByriderIdAndOrderIdAndOrderPahse(order, status);
-            orderFoulRecordList.add(orderFoulRecord);
-            map.put("orderFoulRecordList",orderFoulRecordList);
+            if (orderFoulRecord !=null){
+                orderFoulRecordList.add(orderFoulRecord);
+                map.put("orderFoulRecordList",orderFoulRecordList);
+            }
         }
-
+        if (checkWorkorder == true){
+            if ("10".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByArrive(order);
+                map.put("workorderList",workorderList);
+            }
+            if ("15".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByObtain(order);
+                map.put("workorderList",workorderList);
+            }
+            if ("100".equals(status)&&"98".equals(status)&&"99".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByFinish(order);
+                map.put("workorderList",workorderList);
+            }
+        }
+        orderList.add(orderCheckModel);
+        map.put("orderCheck",orderList);
         jsonData = new JsonData(0,map,"");
         modelMap.addAttribute("jsonData",jsonData);
         return "/fm/statusCheck";

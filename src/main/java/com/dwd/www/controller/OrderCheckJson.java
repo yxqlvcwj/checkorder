@@ -3,6 +3,8 @@ package com.dwd.www.controller;
 import com.dwd.www.check.OrderCheck;
 import com.dwd.www.db.cobarc_shard3.domain.Order;
 import com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord;
+import com.dwd.www.db.workorderdb.domain.Workorder;
+import com.dwd.www.db.workorderdb.mapper.WorkorderMapper;
 import com.dwd.www.en.OrderStatusEnum;
 import com.dwd.www.model.OrderCheckModel;
 import com.dwd.www.service.OrderFoulRecordSearch;
@@ -39,6 +41,9 @@ public class OrderCheckJson {
 
     @Autowired
     private OrderFoulRecordSearch orderFoulRecordSearch;
+
+    @Autowired
+    private WorkorderMapper workorderMapper;
 
     private OrderCheck orderCheck = new OrderCheck();
 
@@ -84,6 +89,20 @@ public class OrderCheckJson {
             orderFoulRecord = orderFoulRecordSearch.getOrderFoulRecordByriderIdAndOrderIdAndOrderPahse(order, status);
             orderFoulRecordList.add(orderFoulRecord);
             map.put("orderFoulRecordList",orderFoulRecordList);
+        }
+        if (checkWorkorder == true){
+            if ("10".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByArrive(order);
+                map.put("workorderList",workorderList);
+            }
+            if ("15".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByObtain(order);
+                map.put("workorderList",workorderList);
+            }
+            if ("100".equals(status)&&"98".equals(status)&&"99".equals(status)){
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByFinish(order);
+                map.put("workorderList",workorderList);
+            }
         }
         jsonData = new JsonData(0,map,"");
         return jsonData;

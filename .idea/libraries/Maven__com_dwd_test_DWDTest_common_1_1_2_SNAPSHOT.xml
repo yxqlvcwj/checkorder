@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.dwd.test:DWDTest-common:1.1.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://D:/library/repository/com/dwd/test/DWDTest-common/1.1.2-SNAPSHOT/DWDTest-common-1.1.2-20181215.081423-647.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://D:/library/repository/com/dwd/test/DWDTest-common/1.1.2-SNAPSHOT/DWDTest-common-1.1.2-20181215.081423-647-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://D:/library/repository/com/dwd/test/DWDTest-common/1.1.2-SNAPSHOT/DWDTest-common-1.1.2-20181215.081423-647-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
