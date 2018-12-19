@@ -1,6 +1,7 @@
 package com.dwd.www.controller;
 
 import com.dwd.www.check.OrderCheck;
+import com.dwd.www.db.cobarb_shard2.mapper.BalanceLogMapper;
 import com.dwd.www.db.cobarc_shard3.domain.Order;
 import com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord;
 import com.dwd.www.db.workorderdb.domain.Workorder;
@@ -45,10 +46,28 @@ public class OrderCheckJson {
     @Autowired
     private WorkorderMapper workorderMapper;
 
+    @Autowired
+    private BalanceLogMapper balanceLogMapper;
+
     private OrderCheck orderCheck = new OrderCheck();
 
     @GetMapping("/order/check/json")
     public JsonData OrderCheck(String id,String riderId,String status,boolean checkDistance,boolean checkWorkorder,ModelMap modelMap){
+
+
+
+        for (int i = 1;i<31;i++){
+            balanceLogMapper.insertData();
+        }
+
+
+
+
+
+
+
+
+
         Map<String,List> map = new HashMap<>();
         List<OrderCheckModel> orderList = new ArrayList<>();
         List<OrderFoulRecord> orderFoulRecordList = new ArrayList<>();

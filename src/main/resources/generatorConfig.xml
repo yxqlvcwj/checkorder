@@ -12,7 +12,7 @@
 		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
 
 		<jdbcConnection
-		driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://rm-bp16270lw98n23fy0po.mysql.rds.aliyuncs.com:3306/workorderdb"
+		driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://rm-bp16270lw98n23fy0po.mysql.rds.aliyuncs.com:3306/cobarb_shard2"
 		userId="qauser" password="Qauser123">
 		</jdbcConnection>
 		<!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
@@ -28,7 +28,7 @@
 		</javaTypeResolver>
 
 		<!-- targetProject:生成PO类的位置 -->
-		<javaModelGenerator targetPackage="com.dwd.www.db.cobarc_shard3.domain"
+		<javaModelGenerator targetPackage="com.dwd.www.db.cobarb_shard2.domain"
 							targetProject=".\src\main\java">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
@@ -36,20 +36,20 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- targetProject:mapper映射文件生成的位置 -->
-		<sqlMapGenerator targetPackage="com.dwd.www.db.cobarc_shard3.mapper"
+		<sqlMapGenerator targetPackage="com.dwd.www.db.cobarb_shard2.mapper"
 						 targetProject=".\src\main\java">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		<!-- targetPackage：mapper接口生成的位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-							 targetPackage="com.dwd.www.db.cobarc_shard3.mapper"
+							 targetPackage="com.dwd.www.db.cobarb_shard2.mapper"
 							 targetProject=".\src\main\java">
 			<!-- enableSubPackages:是否让schema作为包的后缀 -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table schema="" tableName="workorder"></table>
+		<table schema="" tableName="balance_log"></table>
 
 		<!-- 有些表的字段需要指定java类型
 		 <table schema="" tableName="user">

@@ -34,4 +34,10 @@ public class DataSourceConfig {
         return DataSourceBuilder.create().build();
     }
 
+    @Bean(name = "cobarbShard2")
+    @ConfigurationProperties(prefix = "spring.datasource.cobard") // application.properteis中对应属性的前缀
+    public DataSource dataSourceCobarbShard2() {
+        return DataSourceBuilder.create().build();
+    }
+
 }
