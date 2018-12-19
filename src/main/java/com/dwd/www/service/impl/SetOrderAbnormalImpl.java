@@ -1,7 +1,6 @@
 package com.dwd.www.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.dwd.test.util.restAssured.NewRestAssured;
 import com.dwd.www.db.cobarc_shard3.domain.Order;
 import com.dwd.www.model.RiderDTO;
 import com.dwd.www.service.SetOrderAbnormal;
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static io.restassured.RestAssured.given;
 
 /**
  * 异常完成接口实现类
@@ -40,7 +41,7 @@ public class SetOrderAbnormalImpl implements SetOrderAbnormal {
         params.put("groupId",order.getGroupId());
         params.put("token", riderDTO.getToken());
         params.put("developerTest","1");
-        Response response = NewRestAssured.post(params,serverSettings.riderService + url,"application/x-www-form-urlencoded;charset=utf-8");
+        Response response = given().params(params).contentType("application/x-www-form-urlencoded;charset=utf-8").when().post(serverSettings.riderService + url);
         log.info(">>>>> 设置异常订单 req  ：\n"+ JSON.toJSONString(params,true));
         log.info(">>>>> 设置异常订单 resp ："+response.asString());
         return response;

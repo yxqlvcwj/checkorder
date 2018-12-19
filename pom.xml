@@ -127,21 +127,21 @@
             <version>3.0.3</version>
         </dependency>
         <!--commonjar包-->
-        <dependency>
-            <groupId>com.dwd.test</groupId>
-            <artifactId>DWDTest-common</artifactId>
-            <version>1.1.2-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>guava</artifactId>
-                    <groupId>com.google.guava</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.dwd.test</groupId>-->
+            <!--<artifactId>DWDTest-common</artifactId>-->
+            <!--<version>1.1.2-SNAPSHOT</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>log4j</artifactId>-->
+                    <!--<groupId>log4j</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>guava</artifactId>-->
+                    <!--<groupId>com.google.guava</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
 
     </dependencies>
     <!-- maven 插件 -->
