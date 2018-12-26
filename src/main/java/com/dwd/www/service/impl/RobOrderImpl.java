@@ -27,7 +27,7 @@ public class RobOrderImpl implements RobOrder {
     private ServerSettings serverSettings;
 
     @Override
-    public Response RobOrderOperation(Order order, RiderDTO riderDTO) {
+    public Response RobOrderOperation(Order order, RiderDTO riderDTO,boolean checkDistance) {
         String uri= "/"+serverSettings.riderVersion+"/rider/order-operation/rob-order.json";
         Map<String,Object> param=new HashMap<>();
         param.put("cityId",riderDTO.getCityId());

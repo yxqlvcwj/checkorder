@@ -10,5 +10,5 @@ import io.restassured.response.Response;
  */
 public interface SetOrderAbnormal {
 
-    Response SetOrderAbnormalOperation(Order order, RiderDTO riderDTO);
+    Response SetOrderAbnormalOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason);
 }

@@ -26,17 +26,29 @@ public class ArriveShopImpl implements ArriveShop{
     private ServerSettings serverSettings;
 
     @Override
-    public Response ArriveShopOperation(Order order, RiderDTO riderDTO) {
+    public Response ArriveShopOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String arriveShopUri = "/" +serverSettings.riderVersion + "/rider/order-operation/arrive-shop.json";
         Map<String, Object> params = new HashMap<>();
+        if (checkDistance==true){
+            params.put("lng", "120166017");
+            params.put("lat", "30315555");
+            if ("".equals(distanceReason)){
+                params.put("considerDis", "1");
+                params.put("distanceReason", "");
+            }else {
+                params.put("considerDis", "0");
+                params.put("distanceReason", distanceReason);
+            }
+        }else{
+            params.put("lng", String.valueOf(order.getFromLng()));
+            params.put("lat", String.valueOf(order.getFromLat()));
+            params.put("considerDis", "0");
+            params.put("distanceReason", "");
+        }
         params.put("riderId", String.valueOf(riderDTO.getRiderId()));
         params.put("cityId", String.valueOf(order.getCityId()));
         params.put("shopId", String.valueOf(order.getShopId()));
-        params.put("lng", String.valueOf(order.getFromLng()));
-        params.put("lat", String.valueOf(order.getFromLat()));
-        params.put("considerDis", "0");
         params.put("groupId", String.valueOf(order.getGroupId()));
-        params.put("distanceReason", "");
         params.put("orderId", String.valueOf(order.getId()));
         params.put("token", riderDTO.getToken());
         params.put("developerTest","1");

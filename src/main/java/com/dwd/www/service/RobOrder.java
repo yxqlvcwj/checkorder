@@ -10,6 +10,6 @@ import io.restassured.response.Response;
  */
 public interface RobOrder {
 
-     Response RobOrderOperation(Order order, RiderDTO riderDTO);
+     Response RobOrderOperation(Order order, RiderDTO riderDTO,boolean checkDistance);
 
 }

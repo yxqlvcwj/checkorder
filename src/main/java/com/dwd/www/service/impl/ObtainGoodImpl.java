@@ -26,7 +26,7 @@ public class ObtainGoodImpl implements ObtainGood {
     private ServerSettings serverSettings;
 
     @Override
-    public Response ObtainGoodOperation(Order order, RiderDTO riderDTO) {
+    public Response ObtainGoodOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String url="/" +serverSettings.riderVersion +  "/rider/order-operation/obtain-good.json";
         Map<String,Object> param = new HashMap<>();
         param.put("cityId",order.getCityId());

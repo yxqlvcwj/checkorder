@@ -26,7 +26,7 @@ public class FinishOrderImpl implements FinishOrder {
     private ServerSettings serverSettings;
 
     @Override
-    public Response FinishOrderOperation(Order order, RiderDTO riderDTO) {
+    public Response FinishOrderOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String url = "/" + serverSettings.riderVersion + "/rider/order-operation/finish-order.json";
         Map<String, Object> param = new HashMap<>();
         param.put("cityId", order.getCityId());

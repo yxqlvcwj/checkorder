@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>订单状态查询</title>
+    <meta charset="UTF-8">
+    <title>订单状态查询</title>
     <style>
     body {
     padding: 0;
@@ -13,18 +13,27 @@
 </head>
 <body>
 <form action="/order/operation/json" method="get">
-    手机号码：<input type="text" class="form-login" name="mobile"/><br/>
-    订单号：<input type="text" class="form-login" name="id"/><br/>
-	目标状态：
-            <label><input name="status" type="radio" value="5" />已抢单 </label>
-            <label><input name="status" type="radio" value="10" />已到店 </label>
-            <label><input name="status" type="radio" value="15" />已离店 </label>
-            <label><input name="status" type="radio" value="100" />已完成 </label>
-            <label><input name="status" checked="checked"  type="radio" value="98" />异常完成 </label><br />
-   其他校验：<label><input name="checkOrder" type="checkbox" value="true" />校验订单 </label>
-             <label><input name="checkDistance" type="checkbox" value="true" />校验超距 </label>
-             <label><input name="checkWorkorder" type="checkbox" value="true" />校验工单 </label> <br/>
-             <button class="btn" type="submit">操作</button>
+    手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;号&nbsp;&nbsp;码：<input type="text" class="form-login" name="mobile"/><br/>
+    订&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：<input type="text" class="form-login" name="id"/><br/>
+    订单当前状态：
+    <label><input name="startStatus" type="radio" value="0" checked="checked"/>已下单 </label>
+    <label><input name="startStatus" type="radio" value="5" />已抢单 </label>
+    <label><input name="startStatus" type="radio" value="10" />已到店 </label>
+    <label><input name="startStatus" type="radio" value="15" />已离店 </label><br />
+    订单目标状态：
+    <label><input name="status" type="radio" value="5"/>已抢单 </label>
+    <label><input name="status" type="radio" value="10" />已到店 </label>
+    <label><input name="status" type="radio" value="15" />已离店 </label>
+    <label><input name="status" type="radio" value="100" />已完成 </label>
+    <label><input name="status" checked="checked"  type="radio" value="98" />异常完成 </label><br />
+    订单超距原因：
+    <label><input name="distanceReason" type="radio" value="100"/>忘记操作类 </label>
+    <label><input name="distanceReason" type="radio" value="120" />问题报备类 </label>
+    <label><input name="distanceReason" type="radio" value="101" />自身定位有误 </label><br />
+    期&nbsp;望&nbsp;校&nbsp;验&nbsp;项：<label><input name="checkOrder" type="checkbox" value="true" />校验订单 </label>
+    <label><input name="checkDistance" type="checkbox" value="true" />校验超距 </label>
+    <label><input name="checkWorkorder" type="checkbox" value="true" />校验工单 </label><br/>
+    <button class="btn" type="submit">操作</button>
 </form>
 </body>
 </html>

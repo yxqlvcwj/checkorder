@@ -10,6 +10,6 @@ import io.restassured.response.Response;
  */
 public interface ObtainGood {
 
-    Response ObtainGoodOperation(Order order, RiderDTO riderDTO);
+    Response ObtainGoodOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason);
 
 }

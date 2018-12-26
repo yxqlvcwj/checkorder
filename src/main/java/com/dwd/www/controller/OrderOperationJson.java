@@ -1,12 +1,20 @@
 package com.dwd.www.controller;
 
+import com.alibaba.fastjson.JSONPath;
+import com.dwd.www.check.OrderCheck;
 import com.dwd.www.db.cobarc_shard3.domain.Order;
+import com.dwd.www.db.cobarc_shard3.domain.OrderFoulRecord;
+import com.dwd.www.db.workorderdb.domain.Workorder;
+import com.dwd.www.db.workorderdb.mapper.WorkorderMapper;
+import com.dwd.www.model.OrderCheckModel;
 import com.dwd.www.model.RiderDTO;
 import com.dwd.www.service.*;
 import com.dwd.www.untils.JsonData;
+import com.dwd.www.untils.JsonUtil;
 import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,53 +52,286 @@ public class OrderOperationJson {
     @Autowired
     private SetOrderAbnormal setOrderAbnormal;
 
+    @Autowired
+    private WorkorderSearch workorderSearch;
+
+    @Autowired
+    private OrderFoulRecordSearch orderFoulRecordSearch;
+
+    @Autowired
+    private WorkorderMapper workorderMapper;
+
+    private OrderCheck orderCheck = new OrderCheck();
 
     @GetMapping("/order/operation/json")
-    public JsonData login(String id, String riderId, String status, boolean checkDistance, boolean checkWorkorder,String mobile, ModelMap modelMap) throws InterruptedException {
+    public JsonData login(String id,String startStatus,String status,String distanceReason,boolean checkOrder,boolean checkDistance, boolean checkWorkorder,String mobile, ModelMap modelMap) throws InterruptedException {
+        JsonUtil jsonUtil = new JsonUtil();
+        Map<String,List> map = new HashMap<>();
+        List<OrderCheckModel> orderList = new ArrayList<>();
+        List<OrderFoulRecord> orderFoulRecordList = new ArrayList<>();
+        OrderCheckModel orderCheckModel = new OrderCheckModel();
+        OrderFoulRecord orderFoulRecord = null;
+        JsonData jsonData = null ;
         Order order = orderSearch.orderSearch(id);
         RiderDTO riderDTO = riderLogin.login(order,mobile);
-        if ("5".equals(status)){
-            //抢单操作
-            robOrder.RobOrderOperation(order,riderDTO);
-            return  new JsonData(1,"抢单成功");
+        if (order!=null&&order.getRiderId()!=null){
+            riderDTO.setRiderId(String.valueOf(order.getRiderId()));
         }
-       if ("10".equals(status)){
-           //抢单操作
-           robOrder.RobOrderOperation(order,riderDTO);
-           //到店操作
-           arriveShop.ArriveShopOperation(order,riderDTO);
-           return  new JsonData(1,"到店成功");
-       }
+        if(ObjectUtils.isEmpty(order)){
+            return new JsonData(-1,"订单不存在，请检查订单号是否正确");
+        }
+        if(Integer.parseInt(startStatus)>=Integer.parseInt(status)){
+            return new JsonData(-1,"目标状态需要是当前状态之后的状态");
+        }
+        switch (startStatus){
+            case "0":
+                if ("5".equals(status)){
+                    //抢单操作
+                    Response response = robOrder.RobOrderOperation(order,riderDTO,checkDistance);
+                    //工具类，进行response的处理，方便取值
+                    jsonUtil.setJsonBody(jsonUtil.stringToJson(response.asString()));
+                    if(JSONPath.eval(jsonUtil.getJsonBody(), "$.data.successText")==null){
+                        return  new JsonData(-1,String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")));
+                    }
+                    //获取订单状态为5时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderRobedCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
+                if ("10".equals(status)){
+                    //抢单操作
+                    Response responseRobOrder = robOrder.RobOrderOperation(order,riderDTO,checkDistance);
+                    //工具类，进行response的处理，方便取值
+                    jsonUtil.setJsonBody(jsonUtil.stringToJson(responseRobOrder.asString()));
+                    if(JSONPath.eval(jsonUtil.getJsonBody(), "$.data.successText")==null){
+                        return  new JsonData(-1,String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")));
+                    }
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //获取订单状态为10时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderArriveCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
 
-        if ("15".equals(status)){
-            //抢单操作
-            robOrder.RobOrderOperation(order,riderDTO);
-            //到店操作
-            arriveShop.ArriveShopOperation(order,riderDTO);
-            //离店操作
-            obtainGood.ObtainGoodOperation(order,riderDTO);
-            return  new JsonData(1,"离店成功");
+                if ("15".equals(status)){
+                    //抢单操作
+                    Response response = robOrder.RobOrderOperation(order,riderDTO,checkDistance);
+                    //工具类，进行response的处理，方便取值
+                    jsonUtil.setJsonBody(jsonUtil.stringToJson(response.asString()));
+                    if(JSONPath.eval(jsonUtil.getJsonBody(), "$.data.successText")==null){
+                        return  new JsonData(-1,String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")));
+                    }
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    //获取订单状态为15时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
+                if ("100".equals(status)||"98".equals(status)){
+                    //抢单操作
+                    Response response = robOrder.RobOrderOperation(order,riderDTO,checkDistance);
+                    //工具类，进行response的处理，方便取值
+                    jsonUtil.setJsonBody(jsonUtil.stringToJson(response.asString()));
+                    if(JSONPath.eval(jsonUtil.getJsonBody(), "$.data.successText")==null){
+                        return  new JsonData(-1,String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")));
+                    }
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    sleep(70000);
+                    if("100".equals(status)){
+                        //送达操作
+                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        //获取订单状态为100时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                    if("98".equals(status)){
+                        //设置异常单操作
+                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        //获取订单状态为98时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                }
+                break;
+            case "5":
+                if ("10".equals(status)){
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //获取订单状态为10时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderArriveCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
+                if ("15".equals(status)){
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    //获取订单状态为15时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
+                if ("100".equals(status)||"98".equals(status)){
+                    //到店操作
+                    if (checkDistance==true&&distanceReason!=null){
+                        Response responseArriveShop =arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,"");
+                        jsonUtil.setJsonBody(jsonUtil.stringToJson(responseArriveShop.asString()));
+                        if("订单超距".equals(String.valueOf(JSONPath.eval(jsonUtil.getJsonBody(), "$.msg")))){
+                            arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                        }
+                    }else {
+                        arriveShop.ArriveShopOperation(order,riderDTO,checkDistance,distanceReason);
+                    }
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    sleep(65000);
+                    if("100".equals(status)){
+                        //送达操作
+                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        //获取订单状态为100时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                    if("98".equals(status)){
+                        //设置异常单操作
+                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        //获取订单状态为98时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                }
+                break;
+            case "10":
+                if ("15".equals(status)){
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    //获取订单状态为15时的关键字段校验结果
+                    order = orderSearch.orderSearch(id);
+                    orderCheckModel = orderCheck.orderObtainCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                }
+                if ("100".equals(status)||"98".equals(status)){
+                    //离店操作
+                   obtainGood.ObtainGoodOperation(order,riderDTO,checkDistance,distanceReason);
+                    sleep(65000);
+                    if("100".equals(status)){
+                        //送达操作
+                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        //获取订单状态为100时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                   }
+                    if("98".equals(status)){
+                        //设置异常单操作
+                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        //获取订单状态为98时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                }
+                break;
+            case "15":
+                if ("100".equals(status)||"98".equals(status)){
+                    sleep(65000);
+                    if("100".equals(status)){
+                        //送达操作
+                        finishOrder.FinishOrderOperation(order,riderDTO,checkDistance,distanceReason);;
+                        //获取订单状态为100时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderFinishCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                    if("98".equals(status)){
+                        //设置异常单操作
+                        setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO,checkDistance,distanceReason);
+                        //获取订单状态为98时的关键字段校验结果
+                        order = orderSearch.orderSearch(id);
+                        orderCheckModel = orderCheck.orderAbnormalCheck(riderDTO.getRiderId(),id,order,orderCheckModel);
+                    }
+                }
         }
-        if ("100".equals(status)||"98".equals(status)){
-            //抢单操作
-            robOrder.RobOrderOperation(order,riderDTO);
-            //到店操作
-            arriveShop.ArriveShopOperation(order,riderDTO);
-            //离店操作
-            obtainGood.ObtainGoodOperation(order,riderDTO);
-            sleep(65000);
-            if("100".equals(status)){
-                //送达操作
-                finishOrder.FinishOrderOperation(order,riderDTO);
-                return  new JsonData(1,"送达成功");
+        orderList.add(orderCheckModel);
+        map.put("orderCheck",orderList);
+        if (checkDistance==true) {
+            orderFoulRecord = orderFoulRecordSearch.getOrderFoulRecordByriderIdAndOrderIdAndOrderPahse(order, status);
+            orderFoulRecordList.add(orderFoulRecord);
+            map.put("orderFoulRecordList",orderFoulRecordList);
+        }
+        if (checkWorkorder == true){
+            if ("10".equals(status)){
+                sleep(3000);
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByArrive(order);
+                map.put("workorderList",workorderList);
             }
-            if("98".equals(status)){
-                //设置异常单操作
-                setOrderAbnormal.SetOrderAbnormalOperation(order,riderDTO);
-                return  new JsonData(1,"设置异常单成功");
+            if ("15".equals(status)){
+                sleep(3000);
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByObtain(order);
+                map.put("workorderList",workorderList);
+            }
+            if ("100".equals(status)&&"98".equals(status)){
+                sleep(3000);
+                List<Workorder> workorderList = workorderMapper.getWorkorderByServiceIdAndItemCodeAndSourceIdByFinish(order);
+                map.put("workorderList",workorderList);
             }
         }
-        return  new JsonData(1,"不存在选择节点，请检查选择是否正确");
+        switch(status){
+            case "5":
+                jsonData = new JsonData(0,map,"抢单成功");
+                break;
+            case "10":
+                jsonData = new JsonData(0,map,"到店成功");
+                break;
+            case "15":
+                jsonData = new JsonData(0,map,"离店成功");
+                break;
+            case "100":
+                jsonData = new JsonData(0,map,"送达成功");
+                break;
+            case "98":
+                jsonData = new JsonData(0,map,"异常完成成功");
+                break;
+        }
+        return jsonData;
     }
-
 }

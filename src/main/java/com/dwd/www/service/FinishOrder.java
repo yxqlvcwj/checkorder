@@ -10,6 +10,6 @@ import io.restassured.response.Response;
  */
 public interface FinishOrder {
 
-    Response FinishOrderOperation(Order order, RiderDTO riderDTO);
+    Response FinishOrderOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason);
 
 }

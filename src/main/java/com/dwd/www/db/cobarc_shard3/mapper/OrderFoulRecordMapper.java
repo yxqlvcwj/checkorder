@@ -34,7 +34,7 @@ public interface OrderFoulRecordMapper {
     @Select("select * from order_foul_record where order_id=#{order.id} and rider_id=#{order.riderId} and deal_type= 1")
     List<OrderFoulRecord>  getOrderFoulRecordByriderIdAndOrderId(@Param("order") Order order);
 
-    @Select("select * from order_foul_record where order_id=#{order.id} and rider_id=#{order.riderId} and order_phase = #{status} and deal_type= 1 order by ins_tm desc limit 0,1")
+    @Select("select * from order_foul_record where order_id=#{order.id} and rider_id=#{order.riderId} and order_phase >= #{status} and deal_type= 1")
     OrderFoulRecord  getOrderFoulRecordByriderIdAndOrderIdAndOrderPahse(@Param("order") Order order,@Param("status") String status);
 
 }

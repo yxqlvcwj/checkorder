@@ -10,5 +10,5 @@ import io.restassured.response.Response;
  */
 public interface ArriveShop {
 
-    Response ArriveShopOperation(Order order, RiderDTO riderDTO);
+    Response ArriveShopOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason);
 }

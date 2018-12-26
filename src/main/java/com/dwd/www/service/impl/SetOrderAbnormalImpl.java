@@ -27,7 +27,7 @@ public class SetOrderAbnormalImpl implements SetOrderAbnormal {
     private ServerSettings serverSettings;
 
     @Override
-    public Response SetOrderAbnormalOperation(Order order, RiderDTO riderDTO) {
+    public Response SetOrderAbnormalOperation(Order order, RiderDTO riderDTO,boolean checkDistance,String distanceReason) {
         String url = "/" + serverSettings.riderVersion + "/rider/order-operation/set-order-abnormal.json";
         Map<String, Object> params = new HashMap<>();
         params.put("cityId", order.getCityId());
