@@ -33,16 +33,13 @@ public class FinishOrderImpl implements FinishOrder {
             param.put("lng", "120166017");
             param.put("lat", "30315555");
             if ("".equals(distanceReason)){
-                param.put("considerDis", "1");
                 param.put("distanceReason", "");
             }else {
-                param.put("considerDis", "0");
                 param.put("distanceReason", distanceReason);
             }
         }else{
             param.put("lng", String.valueOf(order.getFromLng()));
             param.put("lat", String.valueOf(order.getFromLat()));
-            param.put("considerDis", "0");
             param.put("distanceReason", "");
         }
         param.put("cityId", order.getCityId());

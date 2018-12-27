@@ -33,16 +33,13 @@ public class ArriveShopImpl implements ArriveShop{
             params.put("lng", "120166017");
             params.put("lat", "30315555");
             if ("".equals(distanceReason)){
-                params.put("considerDis", "1");
                 params.put("distanceReason", "");
             }else {
-                params.put("considerDis", "0");
                 params.put("distanceReason", distanceReason);
             }
         }else{
             params.put("lng", String.valueOf(order.getFromLng()));
             params.put("lat", String.valueOf(order.getFromLat()));
-            params.put("considerDis", "0");
             params.put("distanceReason", "");
         }
         params.put("riderId", String.valueOf(riderDTO.getRiderId()));
